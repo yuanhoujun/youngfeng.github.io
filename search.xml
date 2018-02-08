@@ -9,8 +9,8 @@
         <category>基础知识</category>
       </categories>
       <tags>
-        <tag>Android</tag>
         <tag>Kotlin</tag>
+        <tag>Android</tag>
         <tag>操作符</tag>
         <tag>重载</tag>
         <tag>infix</tag>
@@ -25,8 +25,8 @@
         <category>基础知识</category>
       </categories>
       <tags>
-        <tag>Android</tag>
         <tag>Kotlin</tag>
+        <tag>Android</tag>
         <tag>代理模式</tag>
         <tag>代理属性</tag>
         <tag>延迟加载</tag>
