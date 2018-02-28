@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>http://youngfeng.com/2018/02/15/about%20ouyangfeng/2017%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2018-02-10T08:31:07.814Z</lastmod>
+    <data>
+        <display>
+        <title>2017年终总结</title>
+        <pubTime>2018-02-15T15:59:00.000Z</pubTime>
+        
+        <tag>2017</tag>
+         
+        <tag>总结</tag>
+         
+         
+           
+             
+              <breadCrumb title="关于欧阳锋" url="http://youngfeng.com/categories/%E5%85%B3%E4%BA%8E%E6%AC%A7%E9%98%B3%E9%94%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://youngfeng.com/2018/01/02/bug%20fix/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%8D%B0%E8%B1%A1%E6%B7%B1%E5%88%BB%E7%9A%84Bug%E8%BF%BD%E8%B8%AA%E8%BF%87%E7%A8%8B/</loc>
+    <lastmod>2018-02-10T07:31:04.315Z</lastmod>
+    <data>
+        <display>
+        <title>记一次印象深刻的Bug追踪过程</title>
+        <pubTime>2018-01-02T10:03:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Bug</tag>
+         
+        <tag>前端</tag>
+         
+         
+           
+             
+              <breadCrumb title="Bug Fix" url="http://youngfeng.com/categories/Bug-Fix/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://youngfeng.com/2018/01/26/kotlin/%E7%94%A8Kotlin%E5%86%99Android-Gradle%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2018-02-09T14:29:15.993Z</lastmod>
     <data>

@@ -1,4 +1,5 @@
+http://youngfeng.com/2018/02/15/about ouyangfeng/2017年终总结/
 http://youngfeng.com/2018/02/06/kotlin/操作符重载及中缀调用/
 http://youngfeng.com/2018/02/01/develop tools/关于Git，你真的学会了吗？/
 http://youngfeng.com/2018/01/26/kotlin/用Kotlin写Android-Gradle脚本/
-http://youngfeng.com/2016/08/22/kotlin/delegation/
+http://youngfeng.com/2018/01/02/bug fix/记一次印象深刻的Bug追踪过程/
