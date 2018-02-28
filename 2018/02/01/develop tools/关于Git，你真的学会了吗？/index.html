@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-dea7f52471f35ebe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-c0e4b18961fe668f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-d9199360f0dbe0b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-02-08T11:05:42.046Z">
+<meta property="og:updated_time" content="2018-02-28T14:30:03.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Git，你真的学会了吗？">
 <meta name="twitter:description" content="“锋哥，Git有什么可说的，不就是git add添加，git commit提交嘛”  听说我要写一篇Git教程，小明不屑一顾地说。“…”。 小明是我的一个学生。目前，是一名Android开发工程师。 过了几天，我又再次见到了小明。 “锋哥，今天，我在Github新建了一个版本库，本地提交后推送远程的时候，却被拒绝了，是怎么回事？” 以下是小明的操作记录：12345git initgit add .">
@@ -444,7 +444,7 @@
 <p>连上机器后，我使用<code>history</code>命令看到小明在提交之后使用了<code>git reset --hard xxx</code>命令进行重置。<code>--hard</code>是<code>git reset</code>命令中唯一一个不安全的操作，它会真正地销毁数据，以至于你在<code>git log</code>中完全看不到操作日志。可是，Git真的很聪明，它还保存了另外一份日志叫<code>reflog</code>，这个日志记录了你每次修改HEAD的操作。因此，你可以通过下面的命令对数据进行还原：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br><span class="line"></span><br><span class="line">// 使用这个命令，你看到的日志大概是这样</span><br><span class="line">c8278f9 (HEAD -&gt; master) HEAD@&#123;0&#125;: reset: moving to c8278f9914a91e3aca6ab0993b48073ba1e41b2b</span><br><span class="line">3e59423 HEAD@&#123;1&#125;: commit: a</span><br><span class="line">c8278f9 (HEAD -&gt; master) HEAD@&#123;2&#125;: commit (amend): v2 update</span><br><span class="line">2dc167b HEAD@&#123;3&#125;: commit: v2</span><br><span class="line">2e342e9 HEAD@&#123;4&#125;: commit (initial): Init commit</span><br></pre></td></tr></table></figure></p>
 <p>可以看到，我们在版本<code>3e59423</code>进行了<code>git reset</code>操作，最新版本是<code>3e59423</code>。因此，我们可以再次通过<code>git reset</code>命令回到这个版本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 3e59423</span><br></pre></td></tr></table></figure></p>
 <p>以上操作完成后，你会惊喜地发现，丢失的数据居然神奇般地回来了。</p>
-<p>“谢谢锋哥！！！🌺 🌺 🌺”</p>
+<p>“🌺 🌺 🌺”</p>
 <p>“下次别这样操作了哈。另外，你怎么一次性丢失这么多代码。一定要记得勤提交。” 小明出现这样的问题，与平时的不规范操作也是分不开的。因此，最后我还不忘嘱咐了他一句。</p>
 <p>“好的，我知道了。对了，我一个还有比较疑惑的问题。<code>git checkout</code>和<code>git reset</code>到底有啥区别？我以前用SVN的时候<code>git checkout</code>是用来检出代码的，在Git中可以用它切换分支或者指定版本，但<code>git reset</code>同样可以做到。难道两者是完全一样的吗？” 小明在QQ中给我发来了回复消息。</p>
 <p>“这是一个比较有深度的问题，解释这个问题需要一点时间。接下来，你仔细听”</p>
@@ -577,6 +577,7 @@
 </tr>
 </tbody>
 </table>
+<p><strong>注意：执行非目录安全的命令操作的时候，一定要慎重，除非你非常清楚自己在做什么！</strong></p>
 <p>“小明，你明白了吗？” 消息发送过去之后，等了很久却一直没有响应。<br>“哎，这孩子！估计听睡着了… 😆”</p>
 <p>自从这次问到Git的问题后，已经两年过去了，小明再没有问到关于Git的问题。而就在昨天，突然又收到了小明的消息。</p>
 <h1 id="也许你应该试试Git-Flow"><a href="#也许你应该试试Git-Flow" class="headerlink" title="也许你应该试试Git Flow"></a>也许你应该试试Git Flow</h1><p>“锋哥，我现在已经是Android Leader了。现在安卓团队一共6个人，我们现在在做一个社交类应用，在Git管理方面我还是发现了一些问题。其中一个问题就是，现在版本库有好多分支，其中开发主要在develop分支。主干分支是master主要用于版本发布。可还有一些分支却显得非常混乱，有什么办法改善这种情况吗？”</p>
@@ -590,12 +591,11 @@
 <p>这个故事讲完，小明与Git的故事就已经告一段落了。其实，还有一些比较常见的问题，小明并没有问到过。这里，我为你准备了一个附录，给你介绍一些常用的小命令帮你解决日常小问题。它很有用，一定要拿笔记下来，或者收藏这篇文章备用。</p>
 <h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><p><strong>问题一：公司的Git服务器是搭建在一个内网服务器上面的，我想把代码同时提交到OsChina上面，以便在家拉取代码，远程办公，怎么办？</strong><br>Git本身是一个分布式的版本管理系统，实现这个需求非常简单，使用<code>git remote add</code>命令添加多个远程版本库关联即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add company git@xxx</span><br><span class="line">git remote add home git@xxx</span><br></pre></td></tr></table></figure></p>
 <p><strong>问题二：在拉取远程代码的时候，如果本地有代码还没有提交，Git就会提示先提交代码到版本库。可暂时我又不想提交，怎么办？</strong><br>针对这个问题，Git提供了一个临时区域用于保存不想提交的记录，对应的命令是<code>git stash</code>。通常情况下，你可以这样操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 将暂时还不想提交的数据保存到临时区域，保存成功后，工作区将和版本库完全一致</span><br><span class="line">git stash</span><br><span class="line"># 还原stash数据到工作区</span><br><span class="line">git stash apply</span><br><span class="line"># 以上操作完成后，stash数据依然保存在临时区域中，为了删除这部分数据，使用如下命令即可。</span><br><span class="line">git stash drop</span><br><span class="line"># 如果你想在还原数据的同时从临时区域删除数据，可以这样操作：</span><br><span class="line">git statsh pop</span><br><span class="line"># 以上两个命令如果不接任何参数将删除掉所有的临时区域数据，如果你只想删除其中一条记录，指定对应索引数据即可。</span><br><span class="line">git stash pop/drop stash@&#123;index&#125;</span><br><span class="line"># 查看临时区域所有数据，使用如下命令：</span><br><span class="line">git stash list</span><br></pre></td></tr></table></figure></p>
-<p><strong>问题三：作为项目负责人，我希望迅速找出问题代码的“元凶”，有什么办法吗？</strong><br>针对这个问题，最好的答案是<code>git blame</code>，使用这个命令并指定具体文件它将显示文件每一行代码的最近修改记录，你可以清晰地看待最近代码的修改人。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Git是一个非常优秀的版本控制系统，我极力推荐你在日常开发中使用。这篇文章从小明的角度解释了几个常见问题的解决方案，毫无悬念地，你可能还会遇到其它的一些问题。遇到问题，你可以尝试Google搜索解决方案。也可以在文章下方给我留言，我非常乐意为你解答Git问题。</p>
+<p><strong>问题三：作为项目负责人，我希望迅速找出问题代码的“元凶”，有什么办法吗？</strong><br>针对这个问题，最好的答案是<code>git blame</code>，使用这个命令并指定具体文件它将显示文件每一行代码的最近修改记录，你可以清晰地看到最近代码的修改人。</p>
+<p><strong>问题四：部分Team Leader会要求使用<code>git rebase</code>合并代码，这有什么好处吗？</strong><br>我们用一个简单的思维来理解这个问题，最常见的合并操作是使用<code>git merge</code>，而这样操作会在合并分支生成一次新的提交，并且会严格记录分支提交日志，在长期开发过程中，日志就会呈现多条线路展示，给阅读带来一定的障碍。而使用<code>git rebase</code>会使整体代码提交记录始终像在单一分支开发一样，仅使用一条线路展示。但使用<code>git rebase</code>是有一定陷阱的，这个问题需要一定的时间才能说清楚，如果需要了解两个命令的详细区别，我推荐你阅读这篇文章 <a href="https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/rebase" target="_blank" rel="noopener">Rebase 代替合并</a>。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Git是一个非常优秀的版本控制系统，我极力推荐你在日常开发中使用。这篇文章从小明的角度解释了几个常见问题的解决方案，毫无悬念地，你可能还会遇到其它的一些问题。遇到问题，你可以尝试使用Google搜索解决方案；也可以在文章下方给我留言，我非常乐意为你解答Git问题。</p>
 <hr>
-<p>我是欧阳锋，我愿为你鞍前马后，助你平步青云。如果你喜欢我的文章，请在下方留下你爱的印记。如果你不喜欢我的文章，请先喜欢上我的文章，然后再留下爱的印记。</p>
-<p>下次文章再见！拜拜！</p>
-<hr>
+<p>我是欧阳锋，版本控制，我使用Git。了解欧阳锋，从这里开始：<a href="https://www.jianshu.com/p/0c5d14fbaf1a" target="_blank" rel="noopener">欧阳锋档案馆</a>。</p>
 
       
     </div>
