@@ -1,5 +1,5 @@
+http://youngfeng.com/2018/03/02/design pattern/10分钟看懂动态代理设计模式/
 http://youngfeng.com/2018/02/28/about ouyangfeng/欧阳锋档案馆/
 http://youngfeng.com/2018/02/15/about ouyangfeng/2017年终总结/
 http://youngfeng.com/2018/02/06/kotlin/操作符重载及中缀调用/
 http://youngfeng.com/2018/02/01/develop tools/关于Git，你真的学会了吗？/
-http://youngfeng.com/2018/01/26/kotlin/用Kotlin写Android-Gradle脚本/
