@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Kotlin,Groovy,Gradle,脚本," />
+  <meta name="keywords" content="2017,总结," />
 
 
 
@@ -77,28 +77,21 @@
 
 
 
-<meta name="description" content="Android应用开发中，离不开Gradle脚本的构建。大部分Android开发同学忽视了脚本的力量，甚至有很大一部分同学不知道Gradle脚本是什么，用什么语言编写的；当然，也有相当一部分同学知道Gradle脚本是使用Groovy语言编写的，但对于Groovy语言却一窍不通，只是勉强可以看懂Gradle脚本。正所谓，知其然，但并不知其所以然…  换个角度看问题，熟练掌握Gradle脚本还需要">
-<meta name="keywords" content="Kotlin,Groovy,Gradle,脚本">
+<meta name="description" content="“老同学，我的工作好无聊，每天有大把的时间却不知道如何打发。我也不知道这个工作的意义在哪里？” 这是两年前我的一个高中同学给我发来的微信消息。一年后，我再次收到他发来的微信消息 “嘿，哥们！我到清远工作了”，“做运维了吗？”，“不是，还是公务员”，“…..”   他是我的铁哥们，叫赵亦然。他在大学的主修专业是计算机，莫名其妙地做了公务员。现在在利用业余时间学习系统运维。他说，他想去考红帽子认证">
+<meta name="keywords" content="2017,总结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="也许你应该试试用Kotlin写Gradle脚本">
-<meta property="og:url" content="http://youngfeng.com/2018/01/26/kotlin/用Kotlin写Android-Gradle脚本/index.html">
+<meta property="og:title" content="是你自己选择了安逸，别怪路途太遥远">
+<meta property="og:url" content="http://youngfeng.com/2018/03/05/comprehensive article/是你自己选择了安逸，别怪路途太遥远/index.html">
 <meta property="og:site_name" content="欧阳锋工作室">
-<meta property="og:description" content="Android应用开发中，离不开Gradle脚本的构建。大部分Android开发同学忽视了脚本的力量，甚至有很大一部分同学不知道Gradle脚本是什么，用什么语言编写的；当然，也有相当一部分同学知道Gradle脚本是使用Groovy语言编写的，但对于Groovy语言却一窍不通，只是勉强可以看懂Gradle脚本。正所谓，知其然，但并不知其所以然…  换个角度看问题，熟练掌握Gradle脚本还需要">
+<meta property="og:description" content="“老同学，我的工作好无聊，每天有大把的时间却不知道如何打发。我也不知道这个工作的意义在哪里？” 这是两年前我的一个高中同学给我发来的微信消息。一年后，我再次收到他发来的微信消息 “嘿，哥们！我到清远工作了”，“做运维了吗？”，“不是，还是公务员”，“…..”   他是我的铁哥们，叫赵亦然。他在大学的主修专业是计算机，莫名其妙地做了公务员。现在在利用业余时间学习系统运维。他说，他想去考红帽子认证">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-1ba63891256d9db2.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-58f93d293addaba0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-429cf07b4fcaf7bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-fcca2611413c7e31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-4710f3eea9bac093.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-1e9abe6a47044d09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-2ec3894242b02f2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-a000e0ab037ab1a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-995957884721bca9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-02-09T14:29:15.993Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-84fac9ea75a54152.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/703764-90b90b0bacf0ea59.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-03-05T13:55:06.500Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="也许你应该试试用Kotlin写Gradle脚本">
-<meta name="twitter:description" content="Android应用开发中，离不开Gradle脚本的构建。大部分Android开发同学忽视了脚本的力量，甚至有很大一部分同学不知道Gradle脚本是什么，用什么语言编写的；当然，也有相当一部分同学知道Gradle脚本是使用Groovy语言编写的，但对于Groovy语言却一窍不通，只是勉强可以看懂Gradle脚本。正所谓，知其然，但并不知其所以然…  换个角度看问题，熟练掌握Gradle脚本还需要">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/703764-1ba63891256d9db2.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="是你自己选择了安逸，别怪路途太遥远">
+<meta name="twitter:description" content="“老同学，我的工作好无聊，每天有大把的时间却不知道如何打发。我也不知道这个工作的意义在哪里？” 这是两年前我的一个高中同学给我发来的微信消息。一年后，我再次收到他发来的微信消息 “嘿，哥们！我到清远工作了”，“做运维了吗？”，“不是，还是公务员”，“…..”   他是我的铁哥们，叫赵亦然。他在大学的主修专业是计算机，莫名其妙地做了公务员。现在在利用业余时间学习系统运维。他说，他想去考红帽子认证">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/703764-84fac9ea75a54152.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -128,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://youngfeng.com/2018/01/26/kotlin/用Kotlin写Android-Gradle脚本/"/>
+  <link rel="canonical" href="http://youngfeng.com/2018/03/05/comprehensive article/是你自己选择了安逸，别怪路途太遥远/"/>
 
 
 
 
 
-  <title>也许你应该试试用Kotlin写Gradle脚本 | 欧阳锋工作室</title>
+  <title>是你自己选择了安逸，别怪路途太遥远 | 欧阳锋工作室</title>
   
 
 
@@ -305,7 +298,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://youngfeng.com/2018/01/26/kotlin/用Kotlin写Android-Gradle脚本/">
+    <link itemprop="mainEntityOfPage" href="http://youngfeng.com/2018/03/05/comprehensive article/是你自己选择了安逸，别怪路途太遥远/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="欧阳锋工作室">
@@ -322,7 +315,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">也许你应该试试用Kotlin写Gradle脚本</h2>
+          <h2 class="post-title" itemprop="name headline">是你自己选择了安逸，别怪路途太遥远</h2>
         
 
         <div class="post-meta">
@@ -334,8 +327,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-26T10:48:00+08:00">
-                2018-01-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T09:54:00+08:00">
+                2018-03-05
               </time>
             
 
@@ -357,19 +350,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
-                    <span itemprop="name">Kotlin</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Kotlin/杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">杂谈</span>
+                  <a href="/categories/随文杂记/" itemprop="url" rel="index">
+                    <span itemprop="name">随文杂记</span>
                   </a>
                 </span>
 
@@ -385,7 +367,7 @@
 
           
           
-             <span id="/2018/01/26/kotlin/用Kotlin写Android-Gradle脚本/" class="leancloud_visitors" data-flag-title="也许你应该试试用Kotlin写Gradle脚本">
+             <span id="/2018/03/05/comprehensive article/是你自己选择了安逸，别怪路途太遥远/" class="leancloud_visitors" data-flag-title="是你自己选择了安逸，别怪路途太遥远">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -416,67 +398,34 @@
       
 
       
-        <p><img src="http://upload-images.jianshu.io/upload_images/703764-1ba63891256d9db2.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文 | 欧阳锋"></p>
+        <p><img src="http://upload-images.jianshu.io/upload_images/703764-84fac9ea75a54152.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <blockquote>
-<p>Android应用开发中，离不开Gradle脚本的构建。大部分Android开发同学忽视了脚本的力量，甚至有很大一部分同学不知道Gradle脚本是什么，用什么语言编写的；当然，也有相当一部分同学知道Gradle脚本是使用Groovy语言编写的，但对于Groovy语言却一窍不通，只是勉强可以看懂Gradle脚本。正所谓，知其然，但并不知其所以然…</p>
+<p>“老同学，我的工作好无聊，每天有大把的时间却不知道如何打发。我也不知道这个工作的意义在哪里？” 这是两年前我的一个高中同学给我发来的微信消息。一年后，我再次收到他发来的微信消息 “嘿，哥们！我到清远工作了”，“做运维了吗？”，“不是，还是公务员”，“…..” </p>
 </blockquote>
-<p>换个角度看问题，熟练掌握Gradle脚本还需要精通Groovy语言，这对Android开发同学来说的确是一个不小的挑战。这种Java + Groovy的开发套餐对于普通的Android开发者来说的确存在一定的知识断层，显而易见的是，部分同学写的Gradle脚本简直“不堪入目”。时间回到去年5月份，Google IO大会上宣布了一个重磅消息，Android官方开始支持使用Kotlin语言进行应用开发。其实，在这个时间节点上，我已经在生产环境使用Kotlin开发Android将近一年。对于我来说，这无疑是一个让人欣喜若狂的消息。但，惊喜还远远不止这些，过了一段时间，我又看到了这篇文章 <a href="https://blog.gradle.org/kotlin-meets-gradle" target="_blank" rel="noopener">Kotlin Meets Gradle</a>。很有诗意的标题：当Gradle邂逅Kotlin，文章的核心意思是：<strong>Gradle团队正在尝试使用Kotlin语言作为Gradle脚本的官方开发语言。</strong></p>
-<blockquote>
-<p>我想，也许，Android开发者的春天就要到了！</p>
-</blockquote>
-<h1 id="Why-use-Kotlin"><a href="#Why-use-Kotlin" class="headerlink" title="Why use Kotlin ?"></a>Why use Kotlin ?</h1><p>在写Gradle脚本的时候，最痛苦的莫过于没有任何提示，唯一的调试手段就是使用<strong>print</strong>方法打印调试日志。正如 <a href="https://blog.gradle.org/kotlin-meets-gradle" target="_blank" rel="noopener">Kotlin Meets Gradle</a> 文中所说，当你使用Kotlin语言编写Gradle脚本的时候，你会发现一切都变得有趣起来。突然：</p>
-<ul>
-<li>脚本代码可以自动补全了</li>
-<li>源码之间可以互相跳转了</li>
-<li>插件源码更容易看懂了</li>
-<li>重构（Refactoring）也可以支持了<br>…</li>
-</ul>
-<p>当然，惊喜还不止这些，当你开始决定使用Kotlin语言的时候，仿佛一切都变得美好了起来！</p>
-<h1 id="Let’s-start"><a href="#Let’s-start" class="headerlink" title="Let’s start"></a>Let’s start</h1><p>好了，废话不多说，接下来我们开始尝试用Kotlin语言编写Gradle脚本。由于当前 <a href="https://github.com/gradle/kotlin-dsl" target="_blank" rel="noopener">kotlin-dsl</a> 正处于预发布状态（<strong>kotlin-dsl</strong>的最新版本是0.14.2，对应Gradle插件版本4.5），IDE的支持也不完善，为了更好的体验该功能，推荐大家使用如下配置：</p>
-<h3 id="实验室配置"><a href="#实验室配置" class="headerlink" title="实验室配置"></a>实验室配置</h3><p><strong>操作系统：</strong>macOS 10.13.2<br><strong>Android Studio：</strong> 3.1 Canary 9<br><strong>Gradle Wrapper：</strong> 4.5<br><strong>Gradle Plugin：</strong> 3.1.0-alpha9<br><strong>Kotlin</strong>：1.2.21</p>
-<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>首先，按照以往步骤创建一个Android工程：<br><img src="http://upload-images.jianshu.io/upload_images/703764-58f93d293addaba0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>接下来，改造开始，Gradle Script Kotlin脚本以<code>.gradle.kts</code>后缀结尾。因此，我们先将工程根目录<code>settings.gradle</code>更名为<code>settings.gradle.kts</code>。<br><img src="http://upload-images.jianshu.io/upload_images/703764-429cf07b4fcaf7bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这个地方的错误有两个原因：</p>
-<ul>
-<li>Kotlin语言中，单引号只能包裹字符，不能包裹字符串</li>
-<li>Kotlin语言中，方法调用使用括号。仅在使用<code>infix</code>修饰的方法中可以省略括号。这里显然是一个正常调用方法。因此，我们修改为：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include(&quot;app&quot;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>接下来，修改根目录的<code>build.gradle</code>脚本，用同样的方式修改后缀，方法修改为括号调用，修改后的内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        // 这里修改为括号调用即可</span><br><span class="line">        classpath(&quot;com.android.tools.build:gradle:3.0.1&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>注意：在修改后缀名称的时候IDE会出现警告提示，这里可以忽略，选择<strong>continue</strong>即可。</p>
-</blockquote>
-<p>由于我们手动修改了<code>build.gradle</code>脚本，为了保证工程可以使用这个脚本，需要在<code>settings.gradle.kts</code>中添加一行代码，让Gradle知道使用<code>build.gradle.kts</code>脚本构建。因此，最后的<code>settings.gradle.kts</code>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">include(&quot;app&quot;)</span><br><span class="line">rootProject.buildFileName = &quot;build.gradle.kts&quot;</span><br></pre></td></tr></table></figure></p>
-<p>最后一步，修改app模块<code>build.gradle</code>文件，这也是最复杂的一步，修改完后缀名后，你会看到整个脚本全部被红色标识错误：<br><img src="http://upload-images.jianshu.io/upload_images/703764-fcca2611413c7e31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>别慌！还是一样的方式，这里我们先将这里的所有代码注释掉。在最上方逐一对应修改，<code>apply plugin</code>部分修改为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id(&quot;com.android.application&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>接下来，修改<code>android {}</code>闭包部分。这里有两个小技巧，由于目前IDE的支持不是很完善，在输入的时候稍微等待一段时间，IDE会给出相应的提示。另外，如果没有提示，例如<code>android {}</code>闭包就没有任何提示，输入完成后展开右侧gradle面板，选择<code>gradle/buid setup/init</code>，双击执行：<br><img src="http://upload-images.jianshu.io/upload_images/703764-4710f3eea9bac093.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>在底部面板可以看到任务执行是否成功。注意，即使任务执行成功，脚本依然可能被红色标识，这是IDE支持不完善导致的，可以忽略。</p>
-<p>修改完成后的内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion(27)</span><br><span class="line">    buildToolsVersion(&quot;27.0.2&quot;)</span><br><span class="line"></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        applicationId = &quot;com.youngfeng.kotlindsl&quot;</span><br><span class="line">        minSdkVersion(15)</span><br><span class="line">        targetSdkVersion(27)</span><br><span class="line">        versionCode = 1</span><br><span class="line">        versionName = &quot;1.0&quot;</span><br><span class="line">        testInstrumentationRunner = &quot;android.support.test.runner.AndroidJUnitRunner&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        getByName(&quot;release&quot;) &#123;</span><br><span class="line">            isMinifyEnabled = true</span><br><span class="line">            proguardFiles(getDefaultProguardFile(&quot;proguard-android.txt&quot;), &quot;proguard-rules.pro&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>注意：你在使用的过程中，依然可能会遇到无论如何都不生效的问题。这个时候别着急，使用<code>./gradlew assembleDebug</code>命令调试，查看终端找到错误原因。Windows用户去掉<code>./</code>执行即可。<br><img src="http://upload-images.jianshu.io/upload_images/703764-1e9abe6a47044d09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>最后的依赖部分，同样地，全部修改为括号调用即可。这里就不赘述了，文章的最后部分会提供操作视频，在使用过程中有任何问题可以打开操作视频参考，如果依然不能解决，可以在文章下方给我留言，我会在第一时间给你答复。修改后的内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    implementation(fileTree(mapOf(&quot;dir&quot; to &quot;libs&quot;, &quot;include&quot; to listOf(&quot;*.jar&quot;))))</span><br><span class="line">    implementation(&quot;com.android.support:appcompat-v7:26.1.0&quot;)</span><br><span class="line">    implementation(&quot;com.android.support.constraint:constraint-layout:1.0.2&quot;)</span><br><span class="line">    testImplementation(&quot;junit:junit:4.12&quot;)</span><br><span class="line">    androidTestImplementation(&quot;com.android.support.test:runner:1.0.1&quot;)</span><br><span class="line">    androidTestImplementation(&quot;com.android.support.test.espresso:espresso-core:3.0.1&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>通过上面的步骤，从Groovy转换到Kotlin的步骤已经全部完成，你可以在终端输入<code>./gradlew assembleDebug</code>测试是否可以正常构建了：<br><img src="http://upload-images.jianshu.io/upload_images/703764-2ec3894242b02f2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h1 id="统一依赖管理"><a href="#统一依赖管理" class="headerlink" title="统一依赖管理"></a>统一依赖管理</h1><p>上面的步骤虽然完成了脚本的转换，但依赖的管理依然是混乱的，为了实现类似<br> <a href="https://github.com/yuanhoujun/Android_Slide_To_Close" target="_blank" rel="noopener">Snake</a> 工程的统一依赖管理，我们还需要做一些工作。</p>
-<p>Gradle官方提供了使用 <a href="https://docs.gradle.org/current/userguide/organizing_build_logic.html#sec:build_sources" target="_blank" rel="noopener">buildSrc</a> 目录实现自定义任务和插件逻辑，这里我们可以使用它完成依赖的统一处理，一个完整的buildSrc目录结构如下：<br><img src="http://upload-images.jianshu.io/upload_images/703764-a000e0ab037ab1a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>Deps类中，可以这样定义依赖结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">object deps &#123;</span><br><span class="line">    object plugin &#123;</span><br><span class="line">        val gradle = &quot;com.android.tools.build:gradle:3.1.0-alpha09&quot;</span><br><span class="line">        val kotlin = &quot;org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.21&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    object kotlin &#123;</span><br><span class="line">        val stdlibJre7 = &quot;org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.21&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    object android &#123;</span><br><span class="line">        object support &#123;</span><br><span class="line">            val compat = &quot;com.android.support:appcompat-v7:27.0.2&quot;</span><br><span class="line">            val constraintLayout = &quot;com.android.support.constraint:constraint-layout:1.0.2&quot;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        object test &#123;</span><br><span class="line">            val junit = &quot;junit:junit:4.12&quot;</span><br><span class="line">            val runner = &quot;com.android.support.test:runner:1.0.1&quot;</span><br><span class="line">            val espressoCore = &quot;com.android.support.test.espresso:espresso-core:3.0.1&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>定义之后，我们就可以在脚本中直接引用了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    implementation(fileTree(mapOf(&quot;dir&quot; to &quot;libs&quot;, &quot;include&quot; to listOf(&quot;*.jar&quot;))))</span><br><span class="line">    implementation(deps.kotlin.stdlibJre7)</span><br><span class="line">    implementation(deps.android.support.compat)</span><br><span class="line">    implementation(deps.android.support.constraintLayout)</span><br><span class="line">    testImplementation(deps.android.test.junit)</span><br><span class="line">    androidTestImplementation(deps.android.test.runner)</span><br><span class="line">    androidTestImplementation(deps.android.test.espressoCore)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>是不是漂亮了许多？</p>
-<p>至此，整个转换过程就顺利完成了，为了保证转换的成功率，我推荐使用文章开头的实验室配置。如果版本过低，不保证可以转换成功。最新版本的<strong>kotlin-dsl</strong>会跟随最新版本的Gradle插件发布，因此一定要使用最新版本。另外，目前IDE对kts的支持依然不完善，即使正确的写法也会报错，这个一定要注意，不要被IDE欺骗了。</p>
-<h3 id="更详细的操作，请看视频教程"><a href="#更详细的操作，请看视频教程" class="headerlink" title="更详细的操作，请看视频教程"></a>更详细的操作，请看视频教程</h3><p>腾讯视频：<a href="https://v.qq.com/x/page/x0539lvfmm2.html" target="_blank" rel="noopener">用Kotlin写Android Gradle脚本</a></p>
-<h4 id="一些建议"><a href="#一些建议" class="headerlink" title="一些建议"></a>一些建议</h4><p>虽然使用Kotlin语言写脚本是一件非常美妙的事情，但目前依然存在一些问题：</p>
-<ul>
-<li>IDE支持不完善</li>
-<li><a href="https://github.com/gradle/kotlin-dsl" target="_blank" rel="noopener">kotlin-dsl</a> 正在快速开发中，语法变动较大</li>
-<li>缺少官方文档</li>
-<li>互联网上缺少相关资料，遇到问题很难追踪</li>
-</ul>
-<p>因此，目前我并不推荐你在生产环境中使用，但可以作为日常学习练手之用。预计1.0版本的发布在今年6月份左右，正式版本发布后，我推荐你立即将Gradle脚本转换到Kotlin语言。</p>
-<h4 id="遇到问题，看这里-gt"><a href="#遇到问题，看这里-gt" class="headerlink" title="遇到问题，看这里 ==&gt;"></a>遇到问题，看这里 ==&gt;</h4><p>在使用的过程中，按照文章同样的步骤，你依然可能会遇到很多问题。因此，我为你整理了目前互联网上可以参考的资料，你可以收藏这篇文章。遇到问题别慌，来这里查找答案。</p>
-<p>关于<strong>kotlin-dsl</strong>的开发路线图，请看这篇文章：<a href="https://blog.gradle.org/kotlin-scripting-update" target="_blank" rel="noopener">https://blog.gradle.org/kotlin-scripting-update</a></p>
-<p>如果你在使用过程中，遇到了任何问题，并且确定是 <strong>kotlin-dsl</strong> 的bug，请点这里：<a href="https://github.com/gradle/kotlin-dsl" target="_blank" rel="noopener">https://github.com/gradle/kotlin-dsl</a> 并推送 <strong>issue</strong></p>
-<p>如果你遇到了知识盲点，并且在Google找不到答案。可以来 <a href="https://kotlinlang.slack.com/" target="_blank" rel="noopener">Slack</a>#gradle频道反馈，我在 <a href="https://kotlinlang.slack.com/" target="_blank" rel="noopener">Slack</a> 的昵称是<strong>Scott Smith</strong>，也欢迎你给我发送私信消息。<br><img src="http://upload-images.jianshu.io/upload_images/703764-995957884721bca9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>本篇文章例子完整代码，请点击这里：<a href="https://github.com/yuanhoujun/gradle-script-kotlin-example" target="_blank" rel="noopener">https://github.com/yuanhoujun/gradle-script-kotlin-example</a></p>
-<p>kts文档正在编写当中，具体进度，请点这里：<a href="https://github.com/gradle/kotlin-dsl-docs" target="_blank" rel="noopener">https://github.com/gradle/kotlin-dsl-docs</a></p>
-<h1 id="欢迎加入Kotlin交流群"><a href="#欢迎加入Kotlin交流群" class="headerlink" title="欢迎加入Kotlin交流群"></a>欢迎加入Kotlin交流群</h1><p>如果你也喜欢Kotlin语言，欢迎加入我的Kotlin交流群： 329673958 ，一起来参与Kotlin语言的推广工作。</p>
+<p>他是我的铁哥们，叫赵亦然。他在大学的主修专业是计算机，莫名其妙地做了公务员。现在在利用业余时间学习系统运维。他说，他想去考红帽子认证工程师。希望可以换个工作，并详细询问了我关于深圳系统运维工程师的一些事情。可是，正如你所见，一年后，一切照旧。工作依旧，抱怨依然。</p>
+<p>曾几何时，公务员已经成为了年轻人选择工作的第一标准，也成为了父母口中的金饭碗。而对于年轻人，选择公务员这个职业，大多都是出于无奈。当然，也不排除部分同学的确对从政有很大的兴趣。</p>
+<p>严格来讲，这个结论也许有失偏颇。但从我周围的情况来看，结果确实是这样。不信，问问你的公务员朋友，也许你也会得到下面这样一段对话。</p>
+<p>A：为什么你选择做公务员？<br>B：大学的时候，没有目标，不知道自己喜欢什么，就想着考着试试看。没想到，真考上了，就一直做下来了…</p>
+<p>然而，很多同学在真正从事这个职业的时候就开始后悔，公务员机械式的工作方式让他们痛苦不堪。但一想到放弃，想到要放弃这安逸的工作，想到对未知的恐惧，马上就打消了这个念头。 </p>
+<p>公务员职业如此，软件行业也是如此。我是一名软件工程师，在工作中也遇到了很多类似情况的小伙伴。他们并不喜欢编程，却因为IT行业高额薪资而逼迫自己从事这个行业。</p>
+<p>同样地，他们也是痛苦的，如果你正好处在这样一个阶段，你应该可以感同身受。而如果你恰好做了自己喜欢的工作，你不妨试想一下，让你从事一份你并不喜欢的工作是什么滋味。</p>
+<p>拿身边的一些朋友举例，因为并不热爱编程，以至于在对话中很难听到他跟你讨论编程。平时也很少看到他在代码层面的产出，大多是朋友圈晒晒图，或者玩玩游戏，以至于编程技术始终在原地踏步。而一旦离开原有单位跳槽的时候，问题就来了。这类同学往往面临找工作困难的问题，部分同学甚至容易出现因为找工作而情绪低迷的问题。每次听到这类抱怨，我都不知道如何安慰他们。因为，这其实就是一个因果关系而已。你自己不努力，谁能帮你？</p>
+<p>有时候，我也劝他们，换一份工作吧，去做你真正喜欢的事业。结果你应该可以想见，耳朵是听进去了，行动却没有跟上。</p>
+<p>有人可能觉得，IT行业应该不好混，因为是技术活。这样的同学可以过得轻松自在吗？其实不然，在IT公司总有一部分同学可以独挑大梁，以至于复杂的工作他都可以帮你搞定。这部分同学就做一些“扫扫地、擦擦桌子”的工作就行了。日子不仅过得逍遥快活，还烙下个优秀员工的称号。</p>
+<p>不仅身边的同学和朋友是这样，我的妹妹也是如此。</p>
+<p>毕业后，她选择了在一所市里的普通小学教书。为了获得教师许可证，她几经磨难。如此艰难的求职过程，我以为她应该喜欢这份工作。可事实，却并非如此。</p>
+<p>一天我突然收到她发来的消息 “哥，学生们太不听话了，领导们还屡次刁难我。我决定，换个工作，我想去长沙，做点其他的事情，我不太适合当老师”。为此，我给她推荐了文员或者前台或者培训机构指导老师一类的工作。我以为，一年后我应该能看到她有所举动。可事实上，当我再次见到她的时候。很明显，她已经取消了这个计划。</p>
+<p>每年都有无数的人挣扎在痛苦工作的边缘，想要放弃吧，又害怕没有一技之长找不到工作。坚持吧，又如坐针毡、心如刀绞。看似面露微笑，其实心里在骂娘。早上起来先骂一遍自己傻逼，然后扭头坐上上班的地铁。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/703764-90b90b0bacf0ea59.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我非常喜欢一句话：如果你觉得很难，那是因为你在走上坡路。人对于未知的事物都会充满恐惧，以至于迈出第一步往往是最艰难的。</p>
+<p>试想一下，如果让你每天早上8点起来慢跑一个小时，坚持1年，你能做到吗？毫无疑问，能够做到的人寥寥无几。事实上，这事并没有想象的那么困难。你不敢去做，只是因为你给自己预设了太多门槛，你害怕面对未知的事情。</p>
+<p>挖掘本性往往是一个痛苦的过程，可顺遂本性的安逸，永远不过是原地踏步、无所作为。</p>
+<p>有人说，有一种鸟生来就没有脚，以至于它必须不停地飞，才不至于摔死。其实，人生就是这样，停在树上休息，不如奋力往前飞，看到更美的风景。有人问我，你为什么可以坚持一直学习，你有什么动机。其实，我的动机很简单，我不想在我80岁的时候，当我的孙子问起我来的时候，我无话可说。人生多一点挫折，多一点磨难，没什么不好。</p>
+<p>其实，你仔细算一下，人生不过3万天而已。与其一直做着自己不喜欢的工作混混度日，还不如跳出来，勇敢去做自己擅长的事情。用1万天去摸索，1万天去热爱，最后的1万天用来安享晚年。</p>
+<p>余生可贵，请别再抱怨！是你自己选择了安逸，何必怪路途太遥远！</p>
+<p><strong>备注：文章并没有歧视任何职业的意思，请勿产生误解。</strong></p>
+<hr>
+<p>我是欧阳锋，你中枪了吗？那还不点个赞 ~</p>
 
       
     </div>
@@ -505,7 +454,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://youngfeng.com/2018/01/26/kotlin/用Kotlin写Android-Gradle脚本/" title="也许你应该试试用Kotlin写Gradle脚本">http://youngfeng.com/2018/01/26/kotlin/用Kotlin写Android-Gradle脚本/</a>
+    <a href="http://youngfeng.com/2018/03/05/comprehensive article/是你自己选择了安逸，别怪路途太遥远/" title="是你自己选择了安逸，别怪路途太遥远">http://youngfeng.com/2018/03/05/comprehensive article/是你自己选择了安逸，别怪路途太遥远/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -520,13 +469,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+            <a href="/tags/2017/" rel="tag"># 2017</a>
           
-            <a href="/tags/Groovy/" rel="tag"># Groovy</a>
-          
-            <a href="/tags/Gradle/" rel="tag"># Gradle</a>
-          
-            <a href="/tags/脚本/" rel="tag"># 脚本</a>
+            <a href="/tags/总结/" rel="tag"># 总结</a>
           
         </div>
       
@@ -554,8 +499,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/02/bug fix/记一次印象深刻的Bug追踪过程/" rel="next" title="记一次印象深刻的Bug追踪过程">
-                <i class="fa fa-chevron-left"></i> 记一次印象深刻的Bug追踪过程
+              <a href="/2018/03/02/design pattern/10分钟看懂动态代理设计模式/" rel="next" title="10分钟看懂动态代理设计模式">
+                <i class="fa fa-chevron-left"></i> 10分钟看懂动态代理设计模式
               </a>
             
           </div>
@@ -563,10 +508,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/01/develop tools/关于Git，你真的学会了吗？/" rel="prev" title="关于Git，你真的学会了吗？">
-                关于Git，你真的学会了吗？ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -623,17 +564,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -725,22 +657,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-use-Kotlin"><span class="nav-number">1.</span> <span class="nav-text">Why use Kotlin ?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Let’s-start"><span class="nav-number">2.</span> <span class="nav-text">Let’s start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验室配置"><span class="nav-number">2.0.1.</span> <span class="nav-text">实验室配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作步骤"><span class="nav-number">3.</span> <span class="nav-text">操作步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#统一依赖管理"><span class="nav-number">4.</span> <span class="nav-text">统一依赖管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更详细的操作，请看视频教程"><span class="nav-number">4.0.1.</span> <span class="nav-text">更详细的操作，请看视频教程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些建议"><span class="nav-number">4.0.1.1.</span> <span class="nav-text">一些建议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遇到问题，看这里-gt"><span class="nav-number">4.0.1.2.</span> <span class="nav-text">遇到问题，看这里 ==&gt;</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#欢迎加入Kotlin交流群"><span class="nav-number">5.</span> <span class="nav-text">欢迎加入Kotlin交流群</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
