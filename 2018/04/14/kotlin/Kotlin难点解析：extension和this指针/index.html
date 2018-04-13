@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="欧阳锋工作室, Android, Kotlin, iOS, Java, Linux" />
+  <meta name="keywords" content="Kotlin,扩展,this," />
 
 
 
@@ -77,16 +77,21 @@
 
 
 
-<meta name="description" content="关注欧阳锋工作室，你想知道的都在这里~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="欧阳锋工作室">
-<meta property="og:url" content="http://youngfeng.com/tags/关注/index.html">
+<meta name="description" content="扩展（extension）是Kotlin语言中使用非常简单的一个特性。这篇文章并不是要讲解扩展的基本用法，而是解决在一些复杂场景中，扩展容易让人产生迷惑的一些问题。除了扩展，本篇文章还将讲解this指针在Kotlin语言中的基础用法。   扩展函数难点解析大多数场景下，你都能轻松搞定Kotlin扩展。可是，看看下面这个题目，你还能脱口而出，告诉我答案是什么吗？ 12345678910111213">
+<meta name="keywords" content="Kotlin,扩展,this">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin难点解析：extension和this指针">
+<meta property="og:url" content="http://youngfeng.com/2018/04/14/kotlin/Kotlin难点解析：extension和this指针/index.html">
 <meta property="og:site_name" content="欧阳锋工作室">
-<meta property="og:description" content="关注欧阳锋工作室，你想知道的都在这里~">
+<meta property="og:description" content="扩展（extension）是Kotlin语言中使用非常简单的一个特性。这篇文章并不是要讲解扩展的基本用法，而是解决在一些复杂场景中，扩展容易让人产生迷惑的一些问题。除了扩展，本篇文章还将讲解this指针在Kotlin语言中的基础用法。   扩展函数难点解析大多数场景下，你都能轻松搞定Kotlin扩展。可是，看看下面这个题目，你还能脱口而出，告诉我答案是什么吗？ 12345678910111213">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/703764-119913eaea78702b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/703764-ab52dd83e6235da6.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-04-13T16:19:31.833Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="欧阳锋工作室">
-<meta name="twitter:description" content="关注欧阳锋工作室，你想知道的都在这里~">
+<meta name="twitter:title" content="Kotlin难点解析：extension和this指针">
+<meta name="twitter:description" content="扩展（extension）是Kotlin语言中使用非常简单的一个特性。这篇文章并不是要讲解扩展的基本用法，而是解决在一些复杂场景中，扩展容易让人产生迷惑的一些问题。除了扩展，本篇文章还将讲解this指针在Kotlin语言中的基础用法。   扩展函数难点解析大多数场景下，你都能轻松搞定Kotlin扩展。可是，看看下面这个题目，你还能脱口而出，告诉我答案是什么吗？ 12345678910111213">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/703764-119913eaea78702b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -116,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://youngfeng.com/tags/关注/"/>
+  <link rel="canonical" href="http://youngfeng.com/2018/04/14/kotlin/Kotlin难点解析：extension和this指针/"/>
 
 
 
 
 
-  <title>标签: 关注 | 欧阳锋工作室</title>
+  <title>Kotlin难点解析：extension和this指针 | 欧阳锋工作室</title>
   
 
 
@@ -141,7 +146,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,54 +284,322 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>关注<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://youngfeng.com/2018/04/14/kotlin/Kotlin难点解析：extension和this指针/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="欧阳锋工作室">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="欧阳锋工作室">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/02/28/about ouyangfeng/欧阳锋档案馆/" itemprop="url">
-              
-                <span itemprop="name">欧阳锋档案馆</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">Kotlin难点解析：extension和this指针</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-28T22:24:00+08:00"
-              content="2018-02-28" >
-          02-28
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T00:11:00+08:00">
+                2018-04-14
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">Kotlin</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kotlin/基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">基础知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/14/kotlin/Kotlin难点解析：extension和this指针/" class="leancloud_visitors" data-flag-title="Kotlin难点解析：extension和this指针">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>扩展（extension）是Kotlin语言中使用非常简单的一个特性。这篇文章并不是要讲解扩展的基本用法，而是解决在一些复杂场景中，扩展容易让人产生迷惑的一些问题。除了扩展，本篇文章还将讲解this指针在Kotlin语言中的基础用法。</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/703764-119913eaea78702b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="扩展函数难点解析"><a href="#扩展函数难点解析" class="headerlink" title="扩展函数难点解析"></a>扩展函数难点解析</h2><p>大多数场景下，你都能轻松搞定Kotlin扩展。可是，看看下面这个题目，你还能脱口而出，告诉我答案是什么吗？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">open class E &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">open class E1: E() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">open class A &#123;</span><br><span class="line"></span><br><span class="line">    open fun E.f() &#123;</span><br><span class="line">        println(&quot;E.f in A&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    open fun E1.f() &#123;</span><br><span class="line">        println(&quot;E1.f in A&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun call(e: E) &#123;</span><br><span class="line">        e.f()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class A1: A() &#123;</span><br><span class="line"></span><br><span class="line">    override fun E.f() &#123;</span><br><span class="line">        println(&quot;E.f in A1&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    override fun E1.f() &#123;</span><br><span class="line">        println(&quot;E1.f in A1&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line">    // a）</span><br><span class="line">    A().call(E())</span><br><span class="line"></span><br><span class="line">    // b）</span><br><span class="line">    A1().call(E())</span><br><span class="line"></span><br><span class="line">    // c）</span><br><span class="line">    A().call(E())</span><br><span class="line"></span><br><span class="line">    // d）</span><br><span class="line">    A().call(E1())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问题：请告诉a，b，c，d位置代码执行的输出结果是什么？</p>
+<p>对于这个问题，恐怕你在纸上写写画画半天也不一定能给出正确答案吧。关于这个问题，其实我之前的一篇文章 <a href="https://www.jianshu.com/p/d7a40c6a60d1" target="_blank" rel="noopener"> [Kotlin] Lambda and Extension</a> 中有提到过。可是，我认为这篇文章关于这部分的解释不够清晰，有必要再详细阐述一次。</p>
+<p>Ok，let’s started。</p>
+<p>为了解决这个问题，官方提出了两个新的概念：<strong>dispatch receiver</strong>和<strong>extension receiver</strong>。</p>
+<ul>
+<li>dispatch receiver：中文翻译为<strong>分发接收者</strong>。所谓的分发接收者，就是声明这个扩展方法所在的类。即：在哪个类中声明，那个类就是你的分发接收者。</li>
+<li>extension receiver：中文翻译为<strong>扩展接收者</strong>。所谓的扩展接收者，就是你实际扩展的那个类。举个例子：你针对Int类扩展了一个方法add，这个add方法的扩展接收者就是Int类实例。</li>
+</ul>
+<p>为了简化，这里我们将<strong>dispatch receiver</strong>简称为<strong>DR</strong>，将<strong>extension receiver</strong>简称为<strong>ER</strong>。</p>
+<p>还记得多态的概念吗？多态是一种运行时概念，即对象的类型要等到运行时才能最终确定。因此，一些语言中也将多态叫做类型延迟加载。解决上面这个问题我们需要关注就是扩展函数是否会产生多态行为。</p>
+<p>这里我们将产生多态行为的技术叫做<strong>动态解析</strong>，与之相反的行为称之为<strong>静态解析</strong>。</p>
+<p>为了解决上面的问题，你需要记住下面这个规则：</p>
+<ul>
+<li>DR类型是动态解析的</li>
+<li>与之相反，ER类型是静态解析的</li>
+</ul>
+<p>先看上面例子的a、b部分，很显然：</p>
+<ul>
+<li>a代码中f函数的DR是类A，ER是类E</li>
+<li>b代码中f函数的DR是类A1，ER是类E</li>
+</ul>
+<p>参照上面的规则，由于DR类型是动态解析的。在A1类中我们重写了E的扩展函数f，运行时最终会执行A1类中扩展的f方法。a部分很明显会输出A类中扩展的f方法。因此，最终的输出结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E.f in A</span><br><span class="line">E.f in A1</span><br></pre></td></tr></table></figure>
+<p>继续看c、d部分，c、d部分的DR都是A，而对于ER，c、d分别是E、E1。参照上面的规则，ER是静态解析的。在call方法声明的地方，我们传入的对象类型是E，这就决定了无论扩展方法是来自E还是其子类，将始终执行E类的扩展方法。因此，c、d部分将输出同样的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E.f in A</span><br><span class="line">E.f in A</span><br></pre></td></tr></table></figure>
+<p>由此可见，如果你牢记上述两条规则，解决问题将变得非常容易。为了加强你的记忆，我用一个表格总结上面的知识点：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">-</th>
+<th style="text-align:center">DR</th>
+<th style="text-align:center">ER</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">概念</td>
+<td style="text-align:center">扩展方法声明所在的类</td>
+<td style="text-align:center">声明扩展方法的类</td>
+</tr>
+<tr>
+<td style="text-align:center">解析方式</td>
+<td style="text-align:center">动态解析</td>
+<td style="text-align:center">静态解析</td>
+</tr>
+</tbody>
+</table>
+<p>PS：由于新版本Kotlin中针对扩展函数也加入了override关键字，这非常有助于DR和ER的理解。如果你在使用Kotlin，强烈建议你更新到最新版本。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/703764-ab52dd83e6235da6.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="不太一样的this指针"><a href="#不太一样的this指针" class="headerlink" title="不太一样的this指针"></a>不太一样的this指针</h2><p>在Java语言中，如果你在内部类中需要外部类的引用可以将this写在类名后面。可是，试试看Kotlin，果断不行。</p>
+<p>为了获得外部类的引用，Kotlin语言引入了@符号。举个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Outer &#123;</span><br><span class="line">    inner class Inner &#123;</span><br><span class="line">        fun f() &#123;</span><br><span class="line">            println(this@Outer)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，为了获取外部类的引用，只需要在@后面接外部类的名称即可。</p>
+<p>如果对应一个扩展函数，this引用指向是什么呢？先说答案，扩展函数中的this指针指向ER，即实际扩展的那个类对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fun Outer.foo() &#123;</span><br><span class="line">  println(this)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的this指向foo函数的接收者Outer类实例。</p>
+<p>this指针还有一种场景是用在lambda表达式中，这是一种比较特殊的使用场景。lambda表达式本身没有任何接收者，如果是在全局声明一个lambda表达式，将不能使用this指针。而如果是在某个类或者扩展方法中使用this指针，将指向实际所在类或者扩展方法的接收者。</p>
+<p>如果你习惯了Kotlin语言的这种表达方式，this指针的指向就不再是一个问题了。在你习惯这种用法之前，我用一个表格简单总结一下this指针的用法：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">位置</th>
+<th style="text-align:center">指向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">类中</td>
+<td style="text-align:center">默认指向当前类实例，使用@操作符指向具体外部类实例</td>
+</tr>
+<tr>
+<td style="text-align:center">扩展函数</td>
+<td style="text-align:center">默认指向扩展函数的接收者</td>
+</tr>
+<tr>
+<td style="text-align:center">lambda表达式</td>
+<td style="text-align:center">默认指向实际所在类实例或所在扩展函数的接收者</td>
+</tr>
+</tbody>
+</table>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>关于扩展，大多数情况下，你不会遇到文章开头那种复杂的情况。如果遇到了这种情况，只要清楚地区分DR和ER，并牢记DR和ER的解析方式，就能轻松应对了。对于this指针，与Java语言不一样的地方是，为了引用具体类的实例，Kotlin语言使用@符号。个人认为，这种表述方式更自然。如果遇到某些比较复杂的情况，只需要弄清楚接收者，问题就引刃而解了。</p>
 
       
     </div>
+    
+    
+    
 
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qrcode.jpg" alt="欧阳锋工作室 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫描二维码，关注欧阳锋工作室</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    欧阳锋工作室
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://youngfeng.com/2018/04/14/kotlin/Kotlin难点解析：extension和this指针/" title="Kotlin难点解析：extension和this指针">http://youngfeng.com/2018/04/14/kotlin/Kotlin难点解析：extension和this指针/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+          
+            <a href="/tags/扩展/" rel="tag"># 扩展</a>
+          
+            <a href="/tags/this/" rel="tag"># this</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/19/comprehensive article/技术相对论之软件架构/" rel="next" title="技术相对论之软件架构">
+                <i class="fa fa-chevron-left"></i> 技术相对论之软件架构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -334,6 +607,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA1MS8xMDU4OQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -354,8 +636,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -447,6 +738,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展函数难点解析"><span class="nav-number">1.</span> <span class="nav-text">扩展函数难点解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不太一样的this指针"><span class="nav-number">2.</span> <span class="nav-text">不太一样的this指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -605,6 +912,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -633,6 +944,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
