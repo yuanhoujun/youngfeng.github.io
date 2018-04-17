@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="欧阳锋工作室, Android, Kotlin, iOS, Java, Linux" />
+  <meta name="keywords" content="Kotlin,泛型," />
 
 
 
@@ -77,16 +77,20 @@
 
 
 
-<meta name="description" content="关注欧阳锋工作室，你想知道的都在这里~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="欧阳锋工作室">
-<meta property="og:url" content="http://youngfeng.com/page/2/index.html">
+<meta name="description" content="Kotlin语言的泛型设计很有意思，但并不容易看懂。关于这个部分的官方文档，我反复看了好几次，终于弄明白Kotlin语言泛型设计的背后哲学。这篇文章将讲述Kotlin泛型设计的整个思考过程及其背后的哲学思想，希望可以解答你心中的疑问。不过，可以预见地，即使看完，你也未必完全明白这篇文章在说什么，但至少希望你通过这篇文章可以快速掌握Kotlin泛型的用法。  Kotlin泛型的设计初衷我们认为，">
+<meta name="keywords" content="Kotlin,泛型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin语言中的泛型设计哲学">
+<meta property="og:url" content="http://youngfeng.com/2018/04/17/kotlin/Kotlin语言中的泛型设计哲学/index.html">
 <meta property="og:site_name" content="欧阳锋工作室">
-<meta property="og:description" content="关注欧阳锋工作室，你想知道的都在这里~">
+<meta property="og:description" content="Kotlin语言的泛型设计很有意思，但并不容易看懂。关于这个部分的官方文档，我反复看了好几次，终于弄明白Kotlin语言泛型设计的背后哲学。这篇文章将讲述Kotlin泛型设计的整个思考过程及其背后的哲学思想，希望可以解答你心中的疑问。不过，可以预见地，即使看完，你也未必完全明白这篇文章在说什么，但至少希望你通过这篇文章可以快速掌握Kotlin泛型的用法。  Kotlin泛型的设计初衷我们认为，">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/703764-912c5c8fce46d69d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-04-17T15:20:00.109Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="欧阳锋工作室">
-<meta name="twitter:description" content="关注欧阳锋工作室，你想知道的都在这里~">
+<meta name="twitter:title" content="Kotlin语言中的泛型设计哲学">
+<meta name="twitter:description" content="Kotlin语言的泛型设计很有意思，但并不容易看懂。关于这个部分的官方文档，我反复看了好几次，终于弄明白Kotlin语言泛型设计的背后哲学。这篇文章将讲述Kotlin泛型设计的整个思考过程及其背后的哲学思想，希望可以解答你心中的疑问。不过，可以预见地，即使看完，你也未必完全明白这篇文章在说什么，但至少希望你通过这篇文章可以快速掌握Kotlin泛型的用法。  Kotlin泛型的设计初衷我们认为，">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/703764-912c5c8fce46d69d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://youngfeng.com/page/2/"/>
+  <link rel="canonical" href="http://youngfeng.com/2018/04/17/kotlin/Kotlin语言中的泛型设计哲学/"/>
 
 
 
 
 
-  <title>欧阳锋工作室 - 编程，我们是认真的！</title>
+  <title>Kotlin语言中的泛型设计哲学 | 欧阳锋工作室</title>
   
 
 
@@ -141,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,9 +282,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -294,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://youngfeng.com/2018/02/01/develop tools/关于Git，你真的学会了吗？/">
+    <link itemprop="mainEntityOfPage" href="http://youngfeng.com/2018/04/17/kotlin/Kotlin语言中的泛型设计哲学/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="欧阳锋工作室">
@@ -311,9 +314,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/01/develop tools/关于Git，你真的学会了吗？/" itemprop="url">关于Git，你真的学会了吗？</a></h2>
+          <h2 class="post-title" itemprop="name headline">Kotlin语言中的泛型设计哲学</h2>
         
 
         <div class="post-meta">
@@ -325,516 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T22:13:00+08:00">
-                2018-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发工具/" itemprop="url" rel="index">
-                    <span itemprop="name">开发工具</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发工具/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/02/01/develop tools/关于Git，你真的学会了吗？/" class="leancloud_visitors" data-flag-title="关于Git，你真的学会了吗？">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          “锋哥，Git有什么可说的，不就是git add添加，git commit提交嘛”  听说我要写一篇Git教程，小明不屑一顾地说。“…”。
-小明是我的一个学生。目前，是一名Android开发工程师。
-过了几天，我又再次见到了小明。
-“锋哥，今天，我在Github新建了一个版本库，本地提交后推送远程的
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/01/develop tools/关于Git，你真的学会了吗？/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://youngfeng.com/2018/01/26/kotlin/用Kotlin写Android-Gradle脚本/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="欧阳锋工作室">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="欧阳锋工作室">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/26/kotlin/用Kotlin写Android-Gradle脚本/" itemprop="url">也许你应该试试用Kotlin写Gradle脚本</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-26T10:48:00+08:00">
-                2018-01-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
-                    <span itemprop="name">Kotlin</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Kotlin/杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/26/kotlin/用Kotlin写Android-Gradle脚本/" class="leancloud_visitors" data-flag-title="也许你应该试试用Kotlin写Gradle脚本">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-
-Android应用开发中，离不开Gradle脚本的构建。大部分Android开发同学忽视了脚本的力量，甚至有很大一部分同学不知道Gradle脚本是什么，用什么语言编写的；当然，也有相当一部分同学知道Gradle脚本是使用Groovy语言编写的，但对于Groovy语言却一窍不通，只是勉强可以看懂G
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/26/kotlin/用Kotlin写Android-Gradle脚本/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://youngfeng.com/2018/01/02/bug fix/记一次印象深刻的Bug追踪过程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="欧阳锋工作室">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="欧阳锋工作室">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/02/bug fix/记一次印象深刻的Bug追踪过程/" itemprop="url">记一次印象深刻的Bug追踪过程</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-02T18:03:00+08:00">
-                2018-01-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Bug-Fix/" itemprop="url" rel="index">
-                    <span itemprop="name">Bug Fix</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/02/bug fix/记一次印象深刻的Bug追踪过程/" class="leancloud_visitors" data-flag-title="记一次印象深刻的Bug追踪过程">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-问题现象：使用安卓手机以小程序的形式分享产品到微信，使用微信打开，产品详情数据无法显示。而使用iPhone分享到微信，却始终可以正常打开，这个时候所有的矛头都指向了安卓同学。
-
-
-逻辑设计说明：这里的分享数据来自H5接口，通过addJavascriptInterface自定义接口完成H5和Java
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/02/bug fix/记一次印象深刻的Bug追踪过程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://youngfeng.com/2016/08/22/kotlin/delegation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="欧阳锋工作室">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="欧阳锋工作室">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/22/kotlin/delegation/" itemprop="url">Kotlin 代理模式</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-22T00:25:00+08:00">
-                2016-08-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T23:16:00+08:00">
+                2018-04-17
               </time>
             
 
@@ -884,7 +377,7 @@ Android应用开发中，离不开Gradle脚本的构建。大部分Android开发
 
           
           
-             <span id="/2016/08/22/kotlin/delegation/" class="leancloud_visitors" data-flag-title="Kotlin 代理模式">
+             <span id="/2018/04/17/kotlin/Kotlin语言中的泛型设计哲学/" class="leancloud_visitors" data-flag-title="Kotlin语言中的泛型设计哲学">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -915,19 +408,101 @@ Android应用开发中，离不开Gradle脚本的构建。大部分Android开发
       
 
       
-        
-          
-          代理模式是23种经典设计模式之一，代理模式被认为是继承的更好替代解决方案；因为代理比继承更加灵活，在Java语言中，通过反射可以实现动态代理，动态代理可以实现AOP编程，即：可以动态地往已有类中添加逻辑；比如：实现事务的自动提交，异常的自动捕获，热修复等等; 
-在Kotlin语言中，代理模式是默认支
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/08/22/kotlin/delegation/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p><img src="https://upload-images.jianshu.io/upload_images/703764-912c5c8fce46d69d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文 | 欧阳锋"></p>
+<blockquote>
+<p>Kotlin语言的泛型设计很有意思，但并不容易看懂。关于这个部分的官方文档，我反复看了好几次，终于弄明白Kotlin语言泛型设计的背后哲学。这篇文章将讲述Kotlin泛型设计的整个思考过程及其背后的哲学思想，希望可以解答你心中的疑问。不过，可以预见地，即使看完，你也未必完全明白这篇文章在说什么，但至少希望你通过这篇文章可以快速掌握Kotlin泛型的用法。</p>
+</blockquote>
+<h2 id="Kotlin泛型的设计初衷"><a href="#Kotlin泛型的设计初衷" class="headerlink" title="Kotlin泛型的设计初衷"></a>Kotlin泛型的设计初衷</h2><p>我们认为，Kotlin是一门比Java更优秀的JVM编程语言，Kotlin泛型设计的初衷就是为了解决Java泛型设计中一些不合理的问题。这样说可能不够直观，看下面这个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> List&lt;String&gt; strs = new ArrayList&lt;&gt;();</span><br><span class="line">// 这里将导致编译错误，Java语言不允许这样做</span><br><span class="line"> List&lt;Object&gt; objs = strs;</span><br></pre></td></tr></table></figure>
+<p>很明显，String和Object之间存在着安全的隐式转换关系。存放字符串的集合应该可以自由转换为对象集合。这很合理，不是吗？</p>
+<p>如果你这样认为的话，就错了！继续往下看，我们扩展这个程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; strs = new ArrayList&lt;&gt;();</span><br><span class="line">List&lt;Object&gt; objs = strs;</span><br><span class="line">objs.add(1);</span><br><span class="line"></span><br><span class="line">String s = strs.get(0);</span><br></pre></td></tr></table></figure>
+<p>很明显，这不合理！我们在第一个位置存入了整型数值1，却在取的时候将它当成了字符串。strs本身是一个字符串集合，用字符串接收读取的数据的逻辑是合理的。却因为错误的类型转换导致了不安全写入出现了运行时类型转换问题，因此，Java语言不允许我们这样做。</p>
+<p>大多数情况下，这种限制没有问题。可是，在某些情况下，这并不合理。看下面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface List&lt;T&gt; &#123;</span><br><span class="line">    void addAll(List&lt;T&gt; t);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void copy(List&lt;String&gt; from, List&lt;Object&gt; to) &#123;</span><br><span class="line">   to.addAll(from);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个类型绝对安全的操作，但在Java语言中这依然是不允许的。原因是，泛型是一个编译期特性，一旦指定，运行期类型就已经固定了。换而言之，泛型操作的类型是不可变的。这就意味着，List<string>并不是List<object>的子类型。</object></string></p>
+<p>为了允许正确执行上述操作，Java语言增加了神奇的通配符操作魔法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface List&lt;T&gt; &#123;</span><br><span class="line">  void addAll(List&lt;? extends T&gt; t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>? extends T</strong>意味着集合中允许添加的类型不仅仅是T还包括T的子类，但这个集合中可以添加的类型在集合参数传入addAll时就已经确定了。因此，这并不影响参数集合中可以存放的数据类型，它带来的一个直接影响就是addAll方法参数中终于可以传入泛型参数是T或者T的子类的集合了，即上面的copy方法将不再报错。</p>
+<p>这很有意思，在使用通配符之前我们并不能传入类型参数为子类型的集合。使用通配符之后，居然可以了！这个特性在C#被称之为<strong>协变</strong>（covariant）。</p>
+<p><strong>协变</strong>这个词来源于类型之间的绑定。以集合为例，假设有两个集合L1、L2分别绑定数据类型F、C，并且F、C之间存在着父子关系，即F、C之间存在着一种安全的从<strong>C-&gt;F</strong>的隐式转换关系。那么，集合L1和L2之间是否也存在着<strong>L2-&gt;L1</strong>的转换关系呢？这就牵扯到了原始类型转换到绑定类型的集合之间的转换映射关系，我们称之为“可变性”。如果原始类型转换和绑定类型之间转换的方向相同，就称之为“协变”。</p>
+<p>用一句话总结<strong>协变</strong>：如果绑定对象和原始对象之间存在着相同方向的转换关系，即称之为<strong>协变</strong>。</p>
+<p>PS：以上关于<strong>协变</strong>的概念来自笔者的总结，更严谨的概念请参考<a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/concepts/covariance-contravariance/index" target="_blank" rel="noopener">C#官方文档</a>。</p>
+<p>文章开头我们将不可变泛型通过通配符使其成为了可变泛型参数，现在我们知道这种行为叫做<strong>协变</strong>。很明显，<strong>协变</strong>转换中写入是不安全的。因此，<strong>协变</strong>行为仅仅用于读取。如果需要写入怎么办呢？这就牵扯到了另外一个概念<strong>逆变</strong>（contravariance）。</p>
+<p><strong>逆变</strong>与<strong>协变</strong>恰恰相反，即如果F、C之间存在着父子转换关系，L1、L2之间存在着从<strong>L1-&gt;L2</strong>的转换关系。其绑定对象的转换关系与原始对象的转换关系恰好相反。Java语言使用关键字super（？super List）实现<strong>逆变</strong>。</p>
+<p>举个例子：假设有一个集合List&lt;? super String&gt;，你将可以安全地使用add(String)或set(Int，String)方法。但你不能通过get(Int)返回String对象，因为你无法确定返回的对象是否是String类型，你最终只能得到Object。</p>
+<p>因此，我们认为，<strong>逆变</strong>可以安全地写入数据，但并不能安全地读取，即最终不能获取具体的对象数据类型。</p>
+<p>为了简化理解，我们引入官方文档中 <a href="https://baike.baidu.com/item/Josh%20Bloch" target="_blank" rel="noopener">Joshua Bloch</a> 说的一句话：</p>
+<blockquote>
+<p>Joshua Bloch calls those objects you only read from Producers, and those you only write to Consumers. He recommends: “For maximum flexibility, use wildcard types on input parameters that represent producers or consumers”</p>
+</blockquote>
+<p>Joshua Bloch是Java集合框架的创始人，他把那些只能读取的对象叫做生产者；只能写入的对象叫做消费者。为了保证最大灵活性，他推荐在那些代表了生产者和消费者的输入参数上使用通配符指定泛型。</p>
+<p>相对于Java的通配符，Kotlin语言针对<strong>协变</strong>和<strong>逆变</strong>引入两个新的关键词<strong>out</strong>和<strong>in</strong>。</p>
+<p><strong>out</strong>用于<strong>协变</strong>，是只读的，属于生产者，即用在方法的返回值位置。而<strong>in</strong>用于<strong>逆变</strong>，是只写的，属于消费者，即用在方法的参数位置。</p>
+<p>用英文简记为：<strong>POCI</strong> = Producer Out , Consumer In。</p>
+<p>如果一个类中只有生产者，我们就可以在类头使用out声明该类是对泛型参数T<strong>协变</strong>的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface Link&lt;out T&gt; &#123;</span><br><span class="line">    fun node(): T</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样地，如果一个类中只有消费者，我们就可以在类头使用in声明该类是对泛型参数T<strong>逆变</strong>的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface Repo&lt;in T&gt; &#123;</span><br><span class="line">    fun add(t: T)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>out</strong>等价于Java端的<strong>? extends List</strong>通配符，而<strong>in</strong>等价于Java端的<strong>? super List</strong>通配符。因此，类似下面的转换是合理的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">interface Link&lt;out T&gt; &#123;</span><br><span class="line">    fun node(): T</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun f1(linkStr: Link&lt;String&gt;) &#123;</span><br><span class="line">    // 这是一个合理的协变转换</span><br><span class="line">    val linkAny: Link&lt;Any&gt; = linkStr</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Repo&lt;in T&gt; &#123;</span><br><span class="line">    fun add(t: T)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun f2(repoAny: Repo&lt;Any&gt;) &#123;</span><br><span class="line">    // 这是一个合理的逆变转换</span><br><span class="line">    val repoStr: Repo&lt;String&gt; = repoAny</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="小结：协变和逆变"><a href="#小结：协变和逆变" class="headerlink" title="小结：协变和逆变"></a>小结：协变和逆变</h2><p><strong>协变</strong>和<strong>逆变</strong>对于Java程序员来说是一个全新的概念，为了便于理解，我用一个表格做一个简单的总结：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">-</th>
+<th style="text-align:center">协变</th>
+<th style="text-align:center">逆变</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">关键字</td>
+<td style="text-align:center">out</td>
+<td style="text-align:center">in</td>
+</tr>
+<tr>
+<td style="text-align:center">读写</td>
+<td style="text-align:center">只读</td>
+<td style="text-align:center">可写</td>
+</tr>
+<tr>
+<td style="text-align:center">位置</td>
+<td style="text-align:center">返回值</td>
+<td style="text-align:center">参数</td>
+</tr>
+<tr>
+<td style="text-align:center">角色</td>
+<td style="text-align:center">生产者</td>
+<td style="text-align:center">消费者</td>
+</tr>
+</tbody>
+</table>
+<h2 id="类型投影"><a href="#类型投影" class="headerlink" title="类型投影"></a>类型投影</h2><p>在上面的例子中，我们直接在类体声明了泛型参数的协变或逆变类型。在这种情况下，就严格限制了该类中只允许出现该泛型参数的消费者或者生产者。很显然，这种场景并不多见，大多数情况下，一个类中既存在着消费者又存在着生产者。为了适应这种场景，我们可以将协变或逆变声明写在方法参数中。Kotlin官方将这种方式叫做 <a href="https://kotlinlang.org/docs/reference/generics.html#use-site-variance-type-projections" target="_blank" rel="noopener">类型投影（Type Projection）</a>。</p>
+<p>这里我们直接使用官方文档的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Array&lt;T&gt;(val size: Int) &#123;</span><br><span class="line">    fun get(index: Int): T &#123; /* ... */ &#125;</span><br><span class="line">    fun set(index: Int, value: T) &#123; /* ... */ &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun copy(from: Array&lt;Any&gt;, to: Array&lt;Any&gt;) &#123;</span><br><span class="line">    assert(from.size == to.size)</span><br><span class="line">    for (i in from.indices)</span><br><span class="line">        to[i] = from[i]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">val ints: Array&lt;Int&gt; = arrayOf(1, 2, 3)</span><br><span class="line">val any = Array&lt;Any&gt;(3) &#123; &quot;&quot; &#125; </span><br><span class="line"></span><br><span class="line">// 由于泛型参数的不变性，这里将出现问题</span><br><span class="line">copy(ints, any)</span><br></pre></td></tr></table></figure>
+<p>很明显，我们希望from参数可以接收元素为Any或其子类的任意元素，但我们并不希望修改from，以防止出现类似文章开头的问题。因此，我们可以在from参数中添加out修饰，使其协变：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fun copy(from: Array&lt;out Any&gt;, to: Array&lt;Any&gt;) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一旦添加out修饰符，你就会发现，当你尝试调用set方法的时候，编译器将会提示你在out修饰的情况下禁止调用该方法。</p>
+<p>注：Java语言在使用”协变“的情况下，from参数依然可以调用set方法。从这里可以看出，Kotlin语言在泛型安全控制上比Java更加精细。</p>
+<h2 id="星号投影"><a href="#星号投影" class="headerlink" title="星号投影"></a>星号投影</h2><p>除了上述明确的类型投影方式之外，还有一种非常特殊的投影方式，称之为星号投影（star projection）。</p>
+<p>在某些情况下，我们并不知道具体的类型参数信息。为了适应这种情况，Java语言中我们会直接忽略掉类型参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Box&lt;T&gt; &#123;</span><br><span class="line">     public void unPack(T t) &#123;</span><br><span class="line">          ...</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 在不确定类型参数的情况下，我们会这样做</span><br><span class="line">Box box = new Box();</span><br></pre></td></tr></table></figure>
+<p>在Kotlin语言中，我们使用星号对这种情况进行处理。因为，Kotlin针对泛型有严格的读写区分。同样地，使用*号将限制泛型接口的读写操作：</p>
+<ul>
+<li><code>Foo&lt;out T: TUpper&gt;</code>，这种情况下，T是协变类型参数，上边界是TUpper。Foo&lt;*&gt;等价于Foo<out tupper="">，这意味着你可以安全地从Foo&lt;*&gt;读取TUpper类型。</out></li>
+<li><code>Foo&lt;in T&gt;</code>，在这种情况下，T是逆变类型参数，下边界是T。Foo&lt;*&gt;等价于Foo<in nothing="">，这意味着在T未知的情况下，你将无法安全写入Foo&lt;*&gt;。</in></li>
+<li><code>Foo&lt;T: TUpper&gt;</code>，在这种情况下，T是不可变的。Foo&lt;*&gt;等价于你可以使用Foo<out tupper="">安全读取值，写入等价于Foo<in nothing="">，即无法安全写入。</in></out></li>
+</ul>
+<h2 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h2><p>在泛型约束的控制上，Kotlin语言相对于Java也技高一筹。在大多数情况下，泛型约束需要指定一个上边界。这同Java一样，Kotlin使用冒号代替extends：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun &lt;T: Animal&gt; catch(t: T) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>在使用Java的时候，经常碰到这样一个需求。我希望泛型参数可以约束必须同时实现两个接口，但遗憾的是Java语言并没有给予支持。令人惊喜的是，Kotlin语言对这种场景给出了自己的实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fun &lt;T&gt; swap(first: List&lt;T&gt;, second: List&lt;T&gt;) where T: CharSequence, </span><br><span class="line">                                                    T: Comparable&lt;T&gt; &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，Kotlin语言使用where关键字控制泛型约束存在多个上边界的情况，此处应该给Kotlin鼓掌。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Kotlin语言使用<strong>协变</strong>和<strong>逆变</strong>来规范可变泛型操作，out关键字用于协变，代表生产者。in关键字用于逆变，代表消费者。out和in同样可以用于方法参数的泛型声明中，这称之为类型投影。在针对泛型类型约束的处理上，Kotlin增加了多个上边界的支持。</p>
+<p>Kotlin语言最初是希望成为一门编译速度比Scala更快的JVM编程语言！为了更好地设计泛型，我们看到它从C#中引入了<strong>协变</strong>和<strong>逆变</strong>的概念。这一次，我想，它至少同时站在了Scala和C#的肩膀上。</p>
+<h2 id="欢迎加入Kotlin交流群"><a href="#欢迎加入Kotlin交流群" class="headerlink" title="欢迎加入Kotlin交流群"></a>欢迎加入Kotlin交流群</h2><p>如果你也喜欢Kotlin语言，欢迎加入我的Kotlin交流群： 329673958 ，一起来参与Kotlin语言的推广工作。</p>
+
       
     </div>
     
@@ -935,21 +510,86 @@ Android应用开发中，离不开Gradle脚本的构建。大部分Android开发
     
 
     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qrcode.jpg" alt="欧阳锋工作室 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫描二维码，关注欧阳锋工作室</div>
+</div>
+
+      </div>
+    
 
     
 
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    欧阳锋工作室
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://youngfeng.com/2018/04/17/kotlin/Kotlin语言中的泛型设计哲学/" title="Kotlin语言中的泛型设计哲学">http://youngfeng.com/2018/04/17/kotlin/Kotlin语言中的泛型设计哲学/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+          
+            <a href="/tags/泛型/" rel="tag"># 泛型</a>
+          
+        </div>
       
 
       
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/14/kotlin/你是否也被Kotlin语言的object绕晕了呢/" rel="next" title="你是否也被Kotlin语言的object绕晕了呢">
+                <i class="fa fa-chevron-left"></i> 你是否也被Kotlin语言的object绕晕了呢
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -959,14 +599,11 @@ Android应用开发中，离不开Gradle脚本的构建。大部分Android开发
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -974,6 +611,15 @@ Android应用开发中，离不开Gradle脚本的构建。大部分Android开发
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA1MS8xMDU4OQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -994,8 +640,17 @@ Android应用开发中，离不开Gradle脚本的构建。大部分Android开发
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1087,6 +742,22 @@ Android应用开发中，离不开Gradle脚本的构建。大部分Android开发
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kotlin泛型的设计初衷"><span class="nav-number">1.</span> <span class="nav-text">Kotlin泛型的设计初衷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结：协变和逆变"><span class="nav-number">2.</span> <span class="nav-text">小结：协变和逆变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型投影"><span class="nav-number">3.</span> <span class="nav-text">类型投影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#星号投影"><span class="nav-number">4.</span> <span class="nav-text">星号投影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型约束"><span class="nav-number">5.</span> <span class="nav-text">泛型约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎加入Kotlin交流群"><span class="nav-number">7.</span> <span class="nav-text">欢迎加入Kotlin交流群</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1245,6 +916,10 @@ Android应用开发中，离不开Gradle脚本的构建。大部分Android开发
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1273,6 +948,17 @@ Android应用开发中，离不开Gradle脚本的构建。大部分Android开发
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

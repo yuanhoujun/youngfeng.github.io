@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://youngfeng.com/2018/04/17/kotlin/Kotlin%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/</loc>
+    <lastmod>2018-04-17T15:20:00.109Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin语言中的泛型设计哲学</title>
+        <pubTime>2018-04-17T15:16:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+        <tag>泛型</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://youngfeng.com/categories/Kotlin/"/>
+          
+             
+              <breadCrumb title="基础知识" url="http://youngfeng.com/categories/Kotlin/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://youngfeng.com/2018/04/14/kotlin/%E4%BD%A0%E6%98%AF%E5%90%A6%E4%B9%9F%E8%A2%ABKotlin%E8%AF%AD%E8%A8%80%E7%9A%84object%E7%BB%95%E6%99%95%E4%BA%86%E5%91%A2/</loc>
     <lastmod>2018-04-14T04:18:39.654Z</lastmod>
     <data>
