@@ -1,5 +1,5 @@
+http://youngfeng.com/2018/04/18/it tips/最完整的Markdown基础教程/
 http://youngfeng.com/2018/04/17/kotlin/Kotlin语言中的泛型设计哲学/
 http://youngfeng.com/2018/04/14/kotlin/你是否也被Kotlin语言的object绕晕了呢/
 http://youngfeng.com/2018/04/14/kotlin/Kotlin难点解析：extension和this指针/
 http://youngfeng.com/2018/03/19/comprehensive article/技术相对论之软件架构/
-http://youngfeng.com/2018/03/06/open source/Android两行代码实现仿微信滑动返回效果/
