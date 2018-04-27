@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[测测你的Kotlin基础]]></title>
+    <url>%2F2018%2F04%2F27%2Fkotlin%2F%E6%B5%8B%E6%B5%8B%E4%BD%A0%E7%9A%84Kotlin%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[本次测试满分160分，测测看，你能拿几分 &lt;&lt;&lt; 1）Kotlin语言有基本数据类型吗？（5分）2）Kotlin中有哪些访问控制符，分别代表什么意思？默认访问控制符是什么？（5分）3）Kotlin接口是否允许有方法实现？是否允许声明成员变量？（5分）4）Sealed类有什么作用？（5分）5）Kotlin语言中如何实现类似Java创建匿名内部类对象？（10分）6）Kotlin的扩展相对继承有什么优势？扩展方法的执行是否也遵循多态？（10分）7）如果一个类同时实现多个接口，接口中存在同名方法，如何解决冲突？（5分）8）Kotlin语言中是否存在static关键字，如果没有，如何声明静态变量，并实现与Java互通（5分）9）使用Kotlin语言是否一定不会出现空指针异常？为什么？（10分）10）Kotlin语言中推荐使用什么方式判断两个对象是否相等？如何判断两个对象是同一个对象？（5分）11）如果使用Foo\ 这种方式声明泛型，使用Foo&lt;*&gt;这种方式接收该对象实例，代表什么意思？如何理解Kotlin泛型，与Java有什么区别？（10分）12）如何自定义setter/getter方法？（5分）13）使用语句var x = null声明变量x是否合法？如果合法，x的具体类型是什么？(5分)14）下面这段代码的输出结果是什么？（10分）123val list = listOf(1, 2, 3)list.add(4)println(list) 15）下面这段代码的执行结果是什么？（5分）123456789// Kotlin端object A &#123; fun init() &#123; println(&quot;A init&quot;) &#125;&#125;// Java端A.init() 16）下面代码的执行结果是什么？（5分）123fun sum(a: Int, b: Int) = &#123; a + b &#125;println(sum(1, 3)) 17）下面代码的执行结果是什么？（5分）12println(null is Any)println(null!! is Nothing) 18）下面代码的执行结果是什么？（10分）123456789101112131415class A &#123; init() &#123; f() &#125; val a = &quot;a&quot; fun f() &#123; println(a) &#125;&#125;fun main(args: Array&lt;String&gt;) &#123; A()&#125; 19）下面代码的执行结果是什么？（10分）12println(127 as Int? === 127 as Int?)println(128 as Int? === 128 as Int?) 20）下面代码的执行结果是什么？如果运行异常，应该怎样修改才能达到预期效果？（10分）1234(1..5).forEach &#123; if (it == 3) break println(it)&#125; 21）下面代码的执行结果是什么？如果运行异常，应该怎样修改，为什么要这样修改？（10分）123val A.x: Int = 3println(A().x) 22）下面这段代码的执行结果是什么？（10分）12345678910111213fun isOdd(x: Int) = x % 2 != 0fun length(s: String) = s.lengthfun &lt;A, B, C&gt; compose(f: (B) -&gt; C, g: (A) -&gt; B): (A) -&gt; C &#123; return &#123; x -&gt; f(g(x)) &#125;&#125;fun main(args: Array&lt;String&gt;) &#123; val oddLength = compose(::isOdd, ::length) val strings = listOf(&quot;a&quot;, &quot;ab&quot;, &quot;abc&quot;) println(strings.filter(oddLength))&#125; 注：本篇例子Kotlin版本为1.2.31，更新版本可能存在部分差异 下面是你的基础等级： 得分 评价 0 ~ 80 基础较差 80 ~ 108 基础较好 108 ~ 160 基础很棒 查看答案方法微信扫描下方二维码关注欧阳锋工作室，回复“Kotlin测试题答案”即可获取当前测试题答案 欢迎加入Kotlin交流群如果你也喜欢Kotlin语言，欢迎加入我的Kotlin交流群： 329673958 ，一起来参与Kotlin语言的推广工作。]]></content>
+      <categories>
+        <category>Kotlin</category>
+        <category>基础知识</category>
+      </categories>
+      <tags>
+        <tag>Kotlin</tag>
+        <tag>编程语言</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于Kotlin抛弃可检测的异常处理，你怎么看？]]></title>
     <url>%2F2018%2F04%2F27%2Fkotlin%2F%E5%85%B3%E4%BA%8EKotlin%E6%8A%9B%E5%BC%83%E5%8F%AF%E6%A3%80%E6%B5%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%EF%BC%8C%E4%BD%A0%E6%80%8E%E4%B9%88%E7%9C%8B%EF%BC%9F%2F</url>
     <content type="text"><![CDATA[可检测的异常英文翻译为Checked Exception，以下简称为CE。CE是一个备受争议的话题，有人主张CE是一个不可或缺的特性，也有人认为CE带来了一些问题，是一个冗余特性。这其中的支持者和反对者中都不乏软件行业的大佬。今天，我们借助这篇文章一起来讨论一下CE存在的必要性。 什么是CE部分同学可能还不知道CE到底是什么。因此，在开始命题之前，有必要给大家解释一下CE的概念。 CE其实你每天都在用，只是你不知道它的存在而已。看一个例子你就明白了： 1public void readString() throws IOException, FileNotFoundException &#123;&#125; 在这个函数声明的最后面，我们指定了函数可能抛出的异常，在使用的时候我们就可以针对具体的异常使用try {} catch() {}进行处理了。 由于我们在方法声明中指定了可能抛出的异常，因此方法具体可能抛出的异常是已知的，这就称之为可检测的异常（CE）。由于CE的声明来自编译阶段，因此IDE可能帮助你智能判断强制你针对某些异常进行处理，并给出友好提示。 这是一个很好的特性，不是吗？ 想象一下，如果有一天，我们不能在函数上指定可抛出的异常了，会怎样？我们无法确定函数可能抛出的异常，并且可能会因为没有正确处理某个异常而导致程序奔溃。 可是，就是有人认为CE多此一举，并且Kotlin语言就是其中的支持者。为什么会有人坚定地认为CE多此一举呢？这是下一个我们要讨论的话题。 关于CE的争论Java语言的CE设计借鉴了C++，而在受到Java影响的那些语言中，例如C#、Ruby等都去掉了CE的设计，这从实践的角度证明CE的存在确实意义不大。 在这个问题中，C#的主导工程师Anders Hejlsberg最有发言权。老实说，笔者并没有用过C#。可是，如果你搜索一下网络上关于C#和Java对比的文章你就会发现：C#被认为是一门比Java更优秀的编程语言，它始终在新增一些现代语言的特性，使你毫不费力地使用它。而Java作为一门古老的语言，受限于一些原始设计，在增加新特性时总是步履维艰，甚至有点不伦不类。 关于CE的设计，有人对Anders Hejlsberg进行过一次采访。采访的原文链接在这里：https://www.artima.com/intv/handcuffs.html 关于CE，Anders Hejlsberg认为它带来了两个问题版本问题和扩展问题。 所谓的版本问题是什么意思呢？Anders Hejlsberg举了一个例子： 假设有一个方法foo，它声明了抛出异常A、B和C，在下一个版本设计的时候，foo增加了一个新的特性，可能会抛出异常D。对于设计者来说，很明显这是一个大的改变，几乎可以确定的是，客户程序员不会去处理这个异常。为了避免出现问题，设计者不得不声明一个新的方法foo2，抛出一个新的异常。然后，客户程序员可以将针对foo的逻辑处理切换到foo2。 而所谓的扩展问题又是什么意思呢？这更好理解，以下来自Anders Hejlsberg的原话翻译并整理： 如果你在设计一个很小的系统，声明一个方法抛出一个异常，这很棒。可是，如果你尝试构建一个大的系统，其中包含了四、五个小系统的时候，问题来了。假设每个子系统可能抛出四到五个异常，而每上升一个系统，就犹如爬阶梯，异常数量会指数倍增加，最终你可能处理的异常将达到40个甚至80个。很显然，这是一个很糟糕的设计！ Anders Hejlsberg的话有理有据。可是，中国的 王垠 并不同意这个观点。关于Kotlin的CE设计，他写了一篇文章专门讲了这个问题，文章的原稿在这里：Kotlin 和 Checked Exception 看完王垠的文章，你会发现，他并不赞同Anders Hejlsberg的话。他认为，所谓的版本问题和扩展问题，其实都来自于程序员的滥用。只要处理得当，CE带来的好处是无法取代的。 其实，关于CE的争论还远不止Anders Hejlsberg和王垠两人。互联网上有很多关于这个问题的讨论。如果你感兴趣，可以Google了解一下。 你怎么看？很显然，Kotlin语言受到了C#设计的影响，手起刀落，去掉了CE的设计。对于客户程序员来说，显而易见的一个改变是，你再也不能在Kotlin的方法声明中指定可能抛出的异常了。对于Kotlin语言的这种设计，你是赞成还是反对呢？ 欢迎参与投票讨论扫描下方二维码关注欧阳锋工作室，回复“CE”参与投票，或在所有文章中选择同名文章进行投票。 欢迎加入Kotlin交流群如果你也喜欢Kotlin语言，欢迎加入我的Kotlin交流群： 329673958 ，一起来参与Kotlin语言的推广工作。]]></content>
@@ -47,8 +60,8 @@
       </categories>
       <tags>
         <tag>Kotlin</tag>
-        <tag>编程语言</tag>
         <tag>object</tag>
+        <tag>编程语言</tag>
       </tags>
   </entry>
   <entry>
@@ -213,19 +226,6 @@
         <tag>代理模式</tag>
         <tag>代理属性</tag>
         <tag>延迟加载</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[测测你的Kotlin基础]]></title>
-    <url>%2F2016%2F04%2F27%2Fkotlin%2F%E6%B5%8B%E6%B5%8B%E4%BD%A0%E7%9A%84Kotlin%E5%9F%BA%E7%A1%80%2F</url>
-    <content type="text"><![CDATA[本次测试满分160分，测测看，你能拿几分 \&lt;\&lt;\&lt; 1）Kotlin语言有基本数据类型吗？（5分）2）Kotlin中有哪些访问控制符，分别代表什么意思？默认访问控制符是什么？（5分）3）Kotlin接口是否允许有方法实现？是否允许声明成员变量？（5分）4）Sealed类有什么作用？（5分）5）Kotlin语言中如何实现类似Java创建匿名内部类对象？（10分）6）Kotlin的扩展相对继承有什么优势？扩展方法的执行是否也遵循多态？（10分）7）如果一个类同时实现多个接口，接口中存在同名方法，如何解决冲突？（5分）8）Kotlin语言中是否存在static关键字，如果没有，如何声明静态变量，并实现与Java互通（5分）9）使用Kotlin语言是否一定不会出现空指针异常？为什么？（10分）10）Kotlin语言中推荐使用什么方式判断两个对象是否相等？如何判断两个对象是同一个对象？（5分）11）如果使用Foo\ 这种方式声明泛型，使用Foo&lt;*&gt;这种方式接收该对象实例，代表什么意思？如何理解Kotlin泛型，与Java有什么区别？（10分）12）如何自定义setter/getter方法？（5分）13）使用语句var x = null声明变量x是否合法？如果合法，x的具体类型是什么？(5分)14）下面这段代码的输出结果是什么？（10分）123val list = listOf(1, 2, 3)list.add(4)println(list) 15）下面这段代码的执行结果是什么？（5分）123456789// Kotlin端object A &#123; fun init() &#123; println(&quot;A init&quot;) &#125;&#125;// Java端A.init() 16）下面代码的执行结果是什么？（5分）123fun sum(a: Int, b: Int) = &#123; a + b &#125;println(sum(1, 3)) 17）下面代码的执行结果是什么？（5分）12println(null is Any)println(null!! is Nothing) 18）下面代码的执行结果是什么？（10分）123456789101112131415class A &#123; init() &#123; f() &#125; val a = &quot;a&quot; fun f() &#123; println(a) &#125;&#125;fun main(args: Array&lt;String&gt;) &#123; A()&#125; 19）下面代码的执行结果是什么？（10分）12println(127 as Int? === 127 as Int?)println(128 as Int? === 128 as Int?) 20）下面代码的执行结果是什么？如果运行异常，应该怎样修改才能达到预期效果？（10分）1234(1..5).forEach &#123; if (it == 3) break println(it)&#125; 21）下面代码的执行结果是什么？如果运行异常，应该怎样修改，为什么要这样修改？（10分）123val A.x: Int = 3println(A().x) 22）下面这段代码的执行结果是什么？（10分）12345678910111213fun isOdd(x: Int) = x % 2 != 0fun length(s: String) = s.lengthfun &lt;A, B, C&gt; compose(f: (B) -&gt; C, g: (A) -&gt; B): (A) -&gt; C &#123; return &#123; x -&gt; f(g(x)) &#125;&#125;fun main(args: Array&lt;String&gt;) &#123; val oddLength = compose(::isOdd, ::length) val strings = listOf(&quot;a&quot;, &quot;ab&quot;, &quot;abc&quot;) println(strings.filter(oddLength))&#125; 注：本篇例子Kotlin版本为1.2.31，更新版本可能存在部分差异 下面是你的基础等级： 得分 评价 0 ~ 80 基础较差 80 ~ 108 基础较好 108 ~ 160 基础很棒 查看答案方法微信扫描下方二维码关注欧阳锋工作室，回复“Kotlin测试题答案”即可获取当前测试题答案 欢迎加入Kotlin交流群如果你也喜欢Kotlin语言，欢迎加入我的Kotlin交流群： 329673958 ，一起来参与Kotlin语言的推广工作。]]></content>
-      <categories>
-        <category>Kotlin</category>
-        <category>基础知识</category>
-      </categories>
-      <tags>
-        <tag>Kotlin</tag>
-        <tag>编程语言</tag>
       </tags>
   </entry>
 </search>
