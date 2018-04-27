@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://youngfeng.com/2016/04/27/kotlin/%E6%B5%8B%E6%B5%8B%E4%BD%A0%E7%9A%84Kotlin%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2018-04-27T07:09:48.964Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin 代理模式</title>
+        <pubTime>2016-04-27T07:09:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+        <tag>编程语言</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://youngfeng.com/categories/Kotlin/"/>
+          
+             
+              <breadCrumb title="基础知识" url="http://youngfeng.com/categories/Kotlin/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://youngfeng.com/2018/04/27/kotlin/%E5%85%B3%E4%BA%8EKotlin%E6%8A%9B%E5%BC%83%E5%8F%AF%E6%A3%80%E6%B5%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%EF%BC%8C%E4%BD%A0%E6%80%8E%E4%B9%88%E7%9C%8B%EF%BC%9F/</loc>
     <lastmod>2018-04-27T07:04:06.474Z</lastmod>
     <data>
