@@ -145,6 +145,56 @@
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
     <div class="card">
     
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-18T16:26:47.000Z">2019-08-19</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    17 分钟 读完 (大约 2518 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/08/19/隐藏在Flappy-Bird背后的故事/">隐藏在Flappy Bird背后的故事</a>
+            
+        </h1>
+        <div class="content">
+            <p>还记得Flappy Bird这款小游戏吗？它在2014年毫无征兆的全球爆红，当年累积下载量超过5000万，日广告收入超过5万美元。谁曾想到这个游戏的开发者仅仅是一名普通的越南软件工程师，他的名字叫阮哈东，据说开发这款游戏仅用了一周时间左右。</p>
+<p><img src="/2019/08/19/隐藏在Flappy-Bird背后的故事/flappy.jpg" alt=""></p>
+<p>正是因为这款游戏让阮哈东家喻户晓，不少的商家看到了商机，慕名而来。而就在这款游戏爆红的几天之后，阮哈东却突然在Twitter上宣布将在22小时内下架这款游戏，这就意味着阮哈东将主动放弃每天5万美元的收入。作为互联网从业者，他心里应该非常清楚自己将要失去什么。究竟是什么原因让阮哈东决定放弃这笔巨额的广告收入呢？</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/08/19/隐藏在Flappy-Bird背后的故事/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
     <div class="card-image">
         <a href="/2019/04/28/年纪越大，越懂郭德纲/" class="image is-7by1">
             <img class="thumbnail" src="/images/gdg1.png" alt="年纪越大，越理解郭德纲">
@@ -965,137 +1015,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-04-13T16:11:00.000Z">2018-04-14</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Kotlin/">Kotlin</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Kotlin/基础知识/">基础知识</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    12 分钟 读完 (大约 1779 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/04/14/kotlin/Kotlin难点解析：extension和this指针/">Kotlin难点解析：extension和this指针</a>
-            
-        </h1>
-        <div class="content">
-            <blockquote>
-<p>扩展（extension）是Kotlin语言中使用非常简单的一个特性。这篇文章并不是要讲解扩展的基本用法，而是解决在一些复杂场景中，扩展容易让人产生迷惑的一些问题。除了扩展，本篇文章还将讲解this指针在Kotlin语言中的基础用法。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/703764-119913eaea78702b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="扩展函数难点解析"><a href="#扩展函数难点解析" class="headerlink" title="扩展函数难点解析"></a>扩展函数难点解析</h2><p>大多数场景下，你都能轻松搞定Kotlin扩展。可是，看看下面这个题目，你还能脱口而出，告诉我答案是什么吗？</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">open class E &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">open class E1: E() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">open class A &#123;</span><br><span class="line"></span><br><span class="line">    open fun E.f() &#123;</span><br><span class="line">        println(&quot;E.f in A&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    open fun E1.f() &#123;</span><br><span class="line">        println(&quot;E1.f in A&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun call(e: E) &#123;</span><br><span class="line">        e.f()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class A1: A() &#123;</span><br><span class="line"></span><br><span class="line">    override fun E.f() &#123;</span><br><span class="line">        println(&quot;E.f in A1&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    override fun E1.f() &#123;</span><br><span class="line">        println(&quot;E1.f in A1&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line">    // a）</span><br><span class="line">    A().call(E())</span><br><span class="line"></span><br><span class="line">    // b）</span><br><span class="line">    A1().call(E())</span><br><span class="line"></span><br><span class="line">    // c）</span><br><span class="line">    A().call(E())</span><br><span class="line"></span><br><span class="line">    // d）</span><br><span class="line">    A().call(E1())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>问题：请告诉a，b，c，d位置代码执行的输出结果是什么？</p>
-<p>对于这个问题，恐怕你在纸上写写画画半天也不一定能给出正确答案吧。关于这个问题，其实我之前的一篇文章 <a href="https://www.jianshu.com/p/d7a40c6a60d1" target="_blank" rel="noopener"> [Kotlin] Lambda and Extension</a> 中有提到过。可是，我认为这篇文章关于这部分的解释不够清晰，有必要再详细阐述一次。</p>
-<p>Ok，let’s started。</p>
-<p>为了解决这个问题，官方提出了两个新的概念：<strong>dispatch receiver</strong>和<strong>extension receiver</strong>。</p>
-<ul>
-<li>dispatch receiver：中文翻译为<strong>分发接收者</strong>。所谓的分发接收者，就是声明这个扩展方法所在的类。即：在哪个类中声明，那个类就是你的分发接收者。</li>
-<li>extension receiver：中文翻译为<strong>扩展接收者</strong>。所谓的扩展接收者，就是你实际扩展的那个类。举个例子：你针对Int类扩展了一个方法add，这个add方法的扩展接收者就是Int类实例。</li>
-</ul>
-<p>为了简化，这里我们将<strong>dispatch receiver</strong>简称为<strong>DR</strong>，将<strong>extension receiver</strong>简称为<strong>ER</strong>。</p>
-<p>还记得多态的概念吗？多态是一种运行时概念，即对象的类型要等到运行时才能最终确定。因此，一些语言中也将多态叫做类型延迟加载。解决上面这个问题我们需要关注就是扩展函数是否会产生多态行为。</p>
-<p>这里我们将产生多态行为的技术叫做<strong>动态解析</strong>，与之相反的行为称之为<strong>静态解析</strong>。</p>
-<p>为了解决上面的问题，你需要记住下面这个规则：</p>
-<ul>
-<li>DR类型是动态解析的</li>
-<li>与之相反，ER类型是静态解析的</li>
-</ul>
-<p>先看上面例子的a、b部分，很显然：</p>
-<ul>
-<li>a代码中f函数的DR是类A，ER是类E</li>
-<li>b代码中f函数的DR是类A1，ER是类E</li>
-</ul>
-<p>参照上面的规则，由于DR类型是动态解析的。在A1类中我们重写了E的扩展函数f，运行时最终会执行A1类中扩展的f方法。a部分很明显会输出A类中扩展的f方法。因此，最终的输出结果如下：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E.f in A</span><br><span class="line">E.f in A1</span><br></pre></td></tr></table></figure>
-<p>继续看c、d部分，c、d部分的DR都是A，而对于ER，c、d分别是E、E1。参照上面的规则，ER是静态解析的。在call方法声明的地方，我们传入的对象类型是E，这就决定了无论扩展方法是来自E还是其子类，将始终执行E类的扩展方法。因此，c、d部分将输出同样的结果：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E.f in A</span><br><span class="line">E.f in A</span><br></pre></td></tr></table></figure>
-<p>由此可见，如果你牢记上述两条规则，解决问题将变得非常容易。为了加强你的记忆，我用一个表格总结上面的知识点：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">-</th>
-<th style="text-align:center">DR</th>
-<th style="text-align:center">ER</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">概念</td>
-<td style="text-align:center">扩展方法声明所在的类</td>
-<td style="text-align:center">声明扩展方法的类</td>
-</tr>
-<tr>
-<td style="text-align:center">解析方式</td>
-<td style="text-align:center">动态解析</td>
-<td style="text-align:center">静态解析</td>
-</tr>
-</tbody>
-</table>
-<p>PS：由于新版本Kotlin中针对扩展函数也加入了override关键字，这非常有助于DR和ER的理解。如果你在使用Kotlin，强烈建议你更新到最新版本。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/703764-ab52dd83e6235da6.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="不太一样的this指针"><a href="#不太一样的this指针" class="headerlink" title="不太一样的this指针"></a>不太一样的this指针</h2><p>在Java语言中，如果你在内部类中需要外部类的引用可以将this写在类名后面。可是，试试看Kotlin，果断不行。</p>
-<p>为了获得外部类的引用，Kotlin语言引入了@符号。举个例子：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Outer &#123;</span><br><span class="line">    inner class Inner &#123;</span><br><span class="line">        fun f() &#123;</span><br><span class="line">            println(this@Outer)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到，为了获取外部类的引用，只需要在@后面接外部类的名称即可。</p>
-<p>如果对应一个扩展函数，this引用指向是什么呢？先说答案，扩展函数中的this指针指向ER，即实际扩展的那个类对象。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fun Outer.foo() &#123;</span><br><span class="line">  println(this)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里的this指向foo函数的接收者Outer类实例。</p>
-<p>this指针还有一种场景是用在lambda表达式中，这是一种比较特殊的使用场景。lambda表达式本身没有任何接收者，如果是在全局声明一个lambda表达式，将不能使用this指针。而如果是在某个类或者扩展方法中使用this指针，将指向实际所在类或者扩展方法的接收者。</p>
-<p>如果你习惯了Kotlin语言的这种表达方式，this指针的指向就不再是一个问题了。在你习惯这种用法之前，我用一个表格简单总结一下this指针的用法：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">位置</th>
-<th style="text-align:center">指向</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">类中</td>
-<td style="text-align:center">默认指向当前类实例，使用@操作符指向具体外部类实例</td>
-</tr>
-<tr>
-<td style="text-align:center">扩展函数</td>
-<td style="text-align:center">默认指向扩展函数的接收者</td>
-</tr>
-<tr>
-<td style="text-align:center">lambda表达式</td>
-<td style="text-align:center">默认指向实际所在类实例或所在扩展函数的接收者</td>
-</tr>
-</tbody>
-</table>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>关于扩展，大多数情况下，你不会遇到文章开头那种复杂的情况。如果遇到了这种情况，只要清楚地区分DR和ER，并牢记DR和ER的解析方式，就能轻松应对了。对于this指针，与Java语言不一样的地方是，为了引用具体类的实例，Kotlin语言使用@符号。个人认为，这种表述方式更自然。如果遇到某些比较复杂的情况，只需要弄清楚接收者，问题就引刃而解了。</p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -1162,7 +1081,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        21
+                        22
                     </p>
                 </div>
             </div>
@@ -1417,6 +1336,25 @@
         
         <article class="media">
             
+            <a href="/2019/08/19/隐藏在Flappy-Bird背后的故事/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="隐藏在Flappy Bird背后的故事">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-18T16:26:47.000Z">2019-08-19</time></div>
+                    <a href="/2019/08/19/隐藏在Flappy-Bird背后的故事/" class="has-link-black-ter is-size-6">隐藏在Flappy Bird背后的故事</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/04/28/年纪越大，越懂郭德纲/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/gdg1.png" alt="年纪越大，越理解郭德纲">
@@ -1491,25 +1429,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2018/04/27/kotlin/测测你的Kotlin基础/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="测测你的Kotlin基础">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-27T07:09:00.000Z">2018-04-27</time></div>
-                    <a href="/2018/04/27/kotlin/测测你的Kotlin基础/" class="has-link-black-ter is-size-6">测测你的Kotlin基础</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Kotlin/">Kotlin</a> / <a class="has-link-grey -link" href="/categories/Kotlin/基础知识/">基础知识</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1521,6 +1440,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/04/">
@@ -1928,6 +1858,25 @@
         
         <article class="media">
             
+            <a href="/2019/08/19/隐藏在Flappy-Bird背后的故事/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="隐藏在Flappy Bird背后的故事">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-18T16:26:47.000Z">2019-08-19</time></div>
+                    <a href="/2019/08/19/隐藏在Flappy-Bird背后的故事/" class="has-link-black-ter is-size-6">隐藏在Flappy Bird背后的故事</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/04/28/年纪越大，越懂郭德纲/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/gdg1.png" alt="年纪越大，越理解郭德纲">
@@ -2002,25 +1951,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2018/04/27/kotlin/测测你的Kotlin基础/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="测测你的Kotlin基础">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-27T07:09:00.000Z">2018-04-27</time></div>
-                    <a href="/2018/04/27/kotlin/测测你的Kotlin基础/" class="has-link-black-ter is-size-6">测测你的Kotlin基础</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Kotlin/">Kotlin</a> / <a class="has-link-grey -link" href="/categories/Kotlin/基础知识/">基础知识</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -2032,6 +1962,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/04/">
