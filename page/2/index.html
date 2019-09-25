@@ -149,6 +149,84 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-04-14T04:18:00.000Z">2018-04-14</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Kotlin/">Kotlin</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Kotlin/基础知识/">基础知识</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 分钟 读完 (大约 1220 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/04/14/kotlin/你是否也被Kotlin语言的object绕晕了呢/">你是否也被Kotlin语言的object绕晕了呢</a>
+            
+        </h1>
+        <div class="content">
+            <p><img src="https://upload-images.jianshu.io/upload_images/703764-499d2f2f3e299b80.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文 | 欧阳锋"></p>
+<p>近日，在笔者的Kotlin语言交流群中。的确发现了一些同学对<strong>object</strong>的用法有一些疑问。于是，出现了下面这样错误的用法：<br><img src="https://upload-images.jianshu.io/upload_images/703764-a0f15e2bb073278a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>很自然的想法，c是一个接口类型的成员变量，访问外部类的成员变量，这不是理所应当的吗？</p>
+<p>即使查看Kotlin官方文档，也有这样一段描述：</p>
+<blockquote>
+<p>Sometimes we need to create an object of a slight modification of some class, without explicitly declaring a new subclass for it. Java handles this case with anonymous inner classes. Kotlin slightly generalizes this concept with object expressions and object declarations.</p>
+</blockquote>
+<p>核心意思是：Kotlin使用object代替Java匿名内部类实现。</p>
+<p>很明显，即便如此，这里的访问应该也是合情合理的。从匿名内部类中访问成员变量在Java语言中是完全允许的。</p>
+<p>这个问题很有意思，解答这个我们需要生成Java字节码，再反编译成Java看看具体生成的代码是什么。</p>
+<p>借助<a href="http://jd.benow.ca/" target="_blank" rel="noopener">JD-GUI</a>，我们可以看到下面的内容：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public final class Outer</span><br><span class="line">&#123;</span><br><span class="line">  private String a;</span><br><span class="line"></span><br><span class="line">  public static final class c</span><br><span class="line">    implements Moveable</span><br><span class="line">  &#123;</span><br><span class="line">    public static final c INSTANCE;</span><br><span class="line">    </span><br><span class="line">    static</span><br><span class="line">    &#123;</span><br><span class="line">      c localc = new c();INSTANCE = localc;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void move()</span><br><span class="line">    &#123;</span><br><span class="line">      Moveable.DefaultImpls.move(this);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>很有意思，我们在Kotlin类中object部分的代码最终变成了下面这个样子：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static final class c implements Moveable &#123;</span><br><span class="line">   public static final c INSTANCE;</span><br><span class="line">   static &#123;</span><br><span class="line">     c localc = new c();INSTANCE = localc;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public void move() &#123;</span><br><span class="line">     Moveable.DefaultImpls.move(this);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个静态内部类，很明显，静态内部类是不能访问外部类成员变量的。可是问题来了，说好的匿名内部类呢？</p>
+<p>这里一定要注意，如果你只是这样声明了一个object，Kotlin认为你是需要一个静态内部类。而如果你用一个变量去接收object表达式，Kotlin认为你需要一个匿名内部类对象。</p>
+<p>因此，这个类应该这样改进：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Outer &#123;</span><br><span class="line">    private var a: String? = null</span><br><span class="line">    </span><br><span class="line">    // 用变量c去接收object表达式</span><br><span class="line">    private val c = object: Moveable &#123;</span><br><span class="line">        override fun move() &#123;</span><br><span class="line">            super.move()</span><br><span class="line">            // 改进后，这里访问正常</span><br><span class="line">            println(a)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>为了避免出现这个问题，谨记一个原则：如果object只是声明，它代表一个静态内部类。如果用变量接收object表达式，它代表一个匿名内部类对象。</p>
+</blockquote>
+<h2 id="object能干啥？"><a href="#object能干啥？" class="headerlink" title="object能干啥？"></a>object能干啥？</h2><p>很自然地想到，Kotlin的object到底有什么作用。其实，从上文的表述来看。很明显，object至少有下面两个作用：</p>
+<ul>
+<li>简化生成静态内部类</li>
+<li>生成匿名内部类对象</li>
+</ul>
+<p>其实，object还有一个非常重要的作用，就是生成单例对象。如果你需要在Kotlin语言中使用单例，非常简单，只需要使用object关键字即可。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">object Singleton &#123;</span><br><span class="line">    fun f1() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    fun f2() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式声明object和上面的方式略有区别，其最终会生成一个名为Singleton的类，并在类中生成一个静态代码块进行单例对象生成：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public final class Singleton</span><br><span class="line">&#123;</span><br><span class="line">  public static final Singleton INSTANCE;</span><br><span class="line">  </span><br><span class="line">  public final void f1() &#123;&#125;</span><br><span class="line">  </span><br><span class="line">  public final void f2() &#123;&#125;</span><br><span class="line">  </span><br><span class="line">  static</span><br><span class="line">  &#123;</span><br><span class="line">    Singleton localSingleton = new Singleton();INSTANCE = localSingleton;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Kotlin语言中对方法进行访问的时候最终其实是通过<strong>INSTANCE</strong>实例进行中转的。</p>
+<p>在Kotlin语言中还有一个很常用的object叫做伴随对象。所谓的伴随对象只不过是名字叫做<strong>Companion</strong>的object而已。它主要用于类中生成类似Java的静态变量，Kotlin语言针对这个变量会认为你只是希望生成一个静态变量，而不希望引入多余的类。如果你是和Java语言混合开发的话，可以使用一个注解生成和Java语言静态变量完全一样的效果。</p>
+<h2 id="简单总结"><a href="#简单总结" class="headerlink" title="简单总结"></a>简单总结</h2><p>Kotlin语言中使用object命名的方式的确容易让人误认为只要使用这个关键字就是生成了一个对象。而从上文的表述当中，你会发现，其实不同的使用姿势将产生不同的效果。因此，在日常使用中一定要学会随机应变。如果遇到了不明白的问题，不妨来看看这篇文章是否已经解答了你的问题。如果没有，请在文章下方留言告诉我。</p>
+<h2 id="欢迎加入Kotlin交流群"><a href="#欢迎加入Kotlin交流群" class="headerlink" title="欢迎加入Kotlin交流群"></a>欢迎加入Kotlin交流群</h2><p>如果你也喜欢Kotlin语言，欢迎加入我的Kotlin交流群： 329673958 ，一起来参与Kotlin语言的推广工作。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2018-04-13T16:11:00.000Z">2018-04-14</time>
                 
                 <div class="level-item">
@@ -1521,111 +1599,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-01-26T02:48:00.000Z">2018-01-26</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Kotlin/">Kotlin</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Kotlin/杂谈/">杂谈</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    19 分钟 读完 (大约 2786 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/01/26/kotlin/用Kotlin写Android-Gradle脚本/">也许你应该试试用Kotlin写Gradle脚本</a>
-            
-        </h1>
-        <div class="content">
-            <p><img src="http://upload-images.jianshu.io/upload_images/703764-1ba63891256d9db2.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文 | 欧阳锋"></p>
-<blockquote>
-<p>Android应用开发中，离不开Gradle脚本的构建。大部分Android开发同学忽视了脚本的力量，甚至有很大一部分同学不知道Gradle脚本是什么，用什么语言编写的；当然，也有相当一部分同学知道Gradle脚本是使用Groovy语言编写的，但对于Groovy语言却一窍不通，只是勉强可以看懂Gradle脚本。正所谓，知其然，但并不知其所以然…</p>
-</blockquote>
-<p>换个角度看问题，熟练掌握Gradle脚本还需要精通Groovy语言，这对Android开发同学来说的确是一个不小的挑战。这种Java + Groovy的开发套餐对于普通的Android开发者来说的确存在一定的知识断层，显而易见的是，部分同学写的Gradle脚本简直“不堪入目”。时间回到去年5月份，Google IO大会上宣布了一个重磅消息，Android官方开始支持使用Kotlin语言进行应用开发。其实，在这个时间节点上，我已经在生产环境使用Kotlin开发Android将近一年。对于我来说，这无疑是一个让人欣喜若狂的消息。但，惊喜还远远不止这些，过了一段时间，我又看到了这篇文章 <a href="https://blog.gradle.org/kotlin-meets-gradle" target="_blank" rel="noopener">Kotlin Meets Gradle</a>。很有诗意的标题：当Gradle邂逅Kotlin，文章的核心意思是：<strong>Gradle团队正在尝试使用Kotlin语言作为Gradle脚本的官方开发语言。</strong></p>
-<blockquote>
-<p>我想，也许，Android开发者的春天就要到了！</p>
-</blockquote>
-<h1 id="Why-use-Kotlin"><a href="#Why-use-Kotlin" class="headerlink" title="Why use Kotlin ?"></a>Why use Kotlin ?</h1><p>在写Gradle脚本的时候，最痛苦的莫过于没有任何提示，唯一的调试手段就是使用<strong>print</strong>方法打印调试日志。正如 <a href="https://blog.gradle.org/kotlin-meets-gradle" target="_blank" rel="noopener">Kotlin Meets Gradle</a> 文中所说，当你使用Kotlin语言编写Gradle脚本的时候，你会发现一切都变得有趣起来。突然：</p>
-<ul>
-<li>脚本代码可以自动补全了</li>
-<li>源码之间可以互相跳转了</li>
-<li>插件源码更容易看懂了</li>
-<li>重构（Refactoring）也可以支持了<br>…</li>
-</ul>
-<p>当然，惊喜还不止这些，当你开始决定使用Kotlin语言的时候，仿佛一切都变得美好了起来！</p>
-<h1 id="Let’s-start"><a href="#Let’s-start" class="headerlink" title="Let’s start"></a>Let’s start</h1><p>好了，废话不多说，接下来我们开始尝试用Kotlin语言编写Gradle脚本。由于当前 <a href="https://github.com/gradle/kotlin-dsl" target="_blank" rel="noopener">kotlin-dsl</a> 正处于预发布状态（<strong>kotlin-dsl</strong>的最新版本是0.14.2，对应Gradle插件版本4.5），IDE的支持也不完善，为了更好的体验该功能，推荐大家使用如下配置：</p>
-<h3 id="实验室配置"><a href="#实验室配置" class="headerlink" title="实验室配置"></a>实验室配置</h3><p><strong>操作系统：</strong>macOS 10.13.2<br><strong>Android Studio：</strong> 3.1 Canary 9<br><strong>Gradle Wrapper：</strong> 4.5<br><strong>Gradle Plugin：</strong> 3.1.0-alpha9<br><strong>Kotlin</strong>：1.2.21</p>
-<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>首先，按照以往步骤创建一个Android工程：<br><img src="http://upload-images.jianshu.io/upload_images/703764-58f93d293addaba0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>接下来，改造开始，Gradle Script Kotlin脚本以<code>.gradle.kts</code>后缀结尾。因此，我们先将工程根目录<code>settings.gradle</code>更名为<code>settings.gradle.kts</code>。<br><img src="http://upload-images.jianshu.io/upload_images/703764-429cf07b4fcaf7bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这个地方的错误有两个原因：</p>
-<ul>
-<li>Kotlin语言中，单引号只能包裹字符，不能包裹字符串</li>
-<li>Kotlin语言中，方法调用使用括号。仅在使用<code>infix</code>修饰的方法中可以省略括号。这里显然是一个正常调用方法。因此，我们修改为：<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include(&quot;app&quot;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>接下来，修改根目录的<code>build.gradle</code>脚本，用同样的方式修改后缀，方法修改为括号调用，修改后的内容如下：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        // 这里修改为括号调用即可</span><br><span class="line">        classpath(&quot;com.android.tools.build:gradle:3.0.1&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>注意：在修改后缀名称的时候IDE会出现警告提示，这里可以忽略，选择<strong>continue</strong>即可。</p>
-</blockquote>
-<p>由于我们手动修改了<code>build.gradle</code>脚本，为了保证工程可以使用这个脚本，需要在<code>settings.gradle.kts</code>中添加一行代码，让Gradle知道使用<code>build.gradle.kts</code>脚本构建。因此，最后的<code>settings.gradle.kts</code>代码如下：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">include(&quot;app&quot;)</span><br><span class="line">rootProject.buildFileName = &quot;build.gradle.kts&quot;</span><br></pre></td></tr></table></figure></p>
-<p>最后一步，修改app模块<code>build.gradle</code>文件，这也是最复杂的一步，修改完后缀名后，你会看到整个脚本全部被红色标识错误：<br><img src="http://upload-images.jianshu.io/upload_images/703764-fcca2611413c7e31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>别慌！还是一样的方式，这里我们先将这里的所有代码注释掉。在最上方逐一对应修改，<code>apply plugin</code>部分修改为:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id(&quot;com.android.application&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>接下来，修改<code>android {}</code>闭包部分。这里有两个小技巧，由于目前IDE的支持不是很完善，在输入的时候稍微等待一段时间，IDE会给出相应的提示。另外，如果没有提示，例如<code>android {}</code>闭包就没有任何提示，输入完成后展开右侧gradle面板，选择<code>gradle/buid setup/init</code>，双击执行：<br><img src="http://upload-images.jianshu.io/upload_images/703764-4710f3eea9bac093.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>在底部面板可以看到任务执行是否成功。注意，即使任务执行成功，脚本依然可能被红色标识，这是IDE支持不完善导致的，可以忽略。</p>
-<p>修改完成后的内容如下：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion(27)</span><br><span class="line">    buildToolsVersion(&quot;27.0.2&quot;)</span><br><span class="line"></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        applicationId = &quot;com.youngfeng.kotlindsl&quot;</span><br><span class="line">        minSdkVersion(15)</span><br><span class="line">        targetSdkVersion(27)</span><br><span class="line">        versionCode = 1</span><br><span class="line">        versionName = &quot;1.0&quot;</span><br><span class="line">        testInstrumentationRunner = &quot;android.support.test.runner.AndroidJUnitRunner&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        getByName(&quot;release&quot;) &#123;</span><br><span class="line">            isMinifyEnabled = true</span><br><span class="line">            proguardFiles(getDefaultProguardFile(&quot;proguard-android.txt&quot;), &quot;proguard-rules.pro&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>注意：你在使用的过程中，依然可能会遇到无论如何都不生效的问题。这个时候别着急，使用<code>./gradlew assembleDebug</code>命令调试，查看终端找到错误原因。Windows用户去掉<code>./</code>执行即可。<br><img src="http://upload-images.jianshu.io/upload_images/703764-1e9abe6a47044d09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>最后的依赖部分，同样地，全部修改为括号调用即可。这里就不赘述了，文章的最后部分会提供操作视频，在使用过程中有任何问题可以打开操作视频参考，如果依然不能解决，可以在文章下方给我留言，我会在第一时间给你答复。修改后的内容如下：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    implementation(fileTree(mapOf(&quot;dir&quot; to &quot;libs&quot;, &quot;include&quot; to listOf(&quot;*.jar&quot;))))</span><br><span class="line">    implementation(&quot;com.android.support:appcompat-v7:26.1.0&quot;)</span><br><span class="line">    implementation(&quot;com.android.support.constraint:constraint-layout:1.0.2&quot;)</span><br><span class="line">    testImplementation(&quot;junit:junit:4.12&quot;)</span><br><span class="line">    androidTestImplementation(&quot;com.android.support.test:runner:1.0.1&quot;)</span><br><span class="line">    androidTestImplementation(&quot;com.android.support.test.espresso:espresso-core:3.0.1&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>通过上面的步骤，从Groovy转换到Kotlin的步骤已经全部完成，你可以在终端输入<code>./gradlew assembleDebug</code>测试是否可以正常构建了：<br><img src="http://upload-images.jianshu.io/upload_images/703764-2ec3894242b02f2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h1 id="统一依赖管理"><a href="#统一依赖管理" class="headerlink" title="统一依赖管理"></a>统一依赖管理</h1><p>上面的步骤虽然完成了脚本的转换，但依赖的管理依然是混乱的，为了实现类似<br> <a href="https://github.com/yuanhoujun/Android_Slide_To_Close" target="_blank" rel="noopener">Snake</a> 工程的统一依赖管理，我们还需要做一些工作。</p>
-<p>Gradle官方提供了使用 <a href="https://docs.gradle.org/current/userguide/organizing_build_logic.html#sec:build_sources" target="_blank" rel="noopener">buildSrc</a> 目录实现自定义任务和插件逻辑，这里我们可以使用它完成依赖的统一处理，一个完整的buildSrc目录结构如下：<br><img src="http://upload-images.jianshu.io/upload_images/703764-a000e0ab037ab1a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>Deps类中，可以这样定义依赖结构：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">object deps &#123;</span><br><span class="line">    object plugin &#123;</span><br><span class="line">        val gradle = &quot;com.android.tools.build:gradle:3.1.0-alpha09&quot;</span><br><span class="line">        val kotlin = &quot;org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.21&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    object kotlin &#123;</span><br><span class="line">        val stdlibJre7 = &quot;org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.21&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    object android &#123;</span><br><span class="line">        object support &#123;</span><br><span class="line">            val compat = &quot;com.android.support:appcompat-v7:27.0.2&quot;</span><br><span class="line">            val constraintLayout = &quot;com.android.support.constraint:constraint-layout:1.0.2&quot;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        object test &#123;</span><br><span class="line">            val junit = &quot;junit:junit:4.12&quot;</span><br><span class="line">            val runner = &quot;com.android.support.test:runner:1.0.1&quot;</span><br><span class="line">            val espressoCore = &quot;com.android.support.test.espresso:espresso-core:3.0.1&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>定义之后，我们就可以在脚本中直接引用了：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    implementation(fileTree(mapOf(&quot;dir&quot; to &quot;libs&quot;, &quot;include&quot; to listOf(&quot;*.jar&quot;))))</span><br><span class="line">    implementation(deps.kotlin.stdlibJre7)</span><br><span class="line">    implementation(deps.android.support.compat)</span><br><span class="line">    implementation(deps.android.support.constraintLayout)</span><br><span class="line">    testImplementation(deps.android.test.junit)</span><br><span class="line">    androidTestImplementation(deps.android.test.runner)</span><br><span class="line">    androidTestImplementation(deps.android.test.espressoCore)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>是不是漂亮了许多？</p>
-<p>至此，整个转换过程就顺利完成了，为了保证转换的成功率，我推荐使用文章开头的实验室配置。如果版本过低，不保证可以转换成功。最新版本的<strong>kotlin-dsl</strong>会跟随最新版本的Gradle插件发布，因此一定要使用最新版本。另外，目前IDE对kts的支持依然不完善，即使正确的写法也会报错，这个一定要注意，不要被IDE欺骗了。</p>
-<h3 id="更详细的操作，请看视频教程"><a href="#更详细的操作，请看视频教程" class="headerlink" title="更详细的操作，请看视频教程"></a>更详细的操作，请看视频教程</h3><p>腾讯视频：<a href="https://v.qq.com/x/page/x0539lvfmm2.html" target="_blank" rel="noopener">用Kotlin写Android Gradle脚本</a></p>
-<h4 id="一些建议"><a href="#一些建议" class="headerlink" title="一些建议"></a>一些建议</h4><p>虽然使用Kotlin语言写脚本是一件非常美妙的事情，但目前依然存在一些问题：</p>
-<ul>
-<li>IDE支持不完善</li>
-<li><a href="https://github.com/gradle/kotlin-dsl" target="_blank" rel="noopener">kotlin-dsl</a> 正在快速开发中，语法变动较大</li>
-<li>缺少官方文档</li>
-<li>互联网上缺少相关资料，遇到问题很难追踪</li>
-</ul>
-<p>因此，目前我并不推荐你在生产环境中使用，但可以作为日常学习练手之用。预计1.0版本的发布在今年6月份左右，正式版本发布后，我推荐你立即将Gradle脚本转换到Kotlin语言。</p>
-<h4 id="遇到问题，看这里-gt"><a href="#遇到问题，看这里-gt" class="headerlink" title="遇到问题，看这里 ==&gt;"></a>遇到问题，看这里 ==&gt;</h4><p>在使用的过程中，按照文章同样的步骤，你依然可能会遇到很多问题。因此，我为你整理了目前互联网上可以参考的资料，你可以收藏这篇文章。遇到问题别慌，来这里查找答案。</p>
-<p>关于<strong>kotlin-dsl</strong>的开发路线图，请看这篇文章：<a href="https://blog.gradle.org/kotlin-scripting-update" target="_blank" rel="noopener">https://blog.gradle.org/kotlin-scripting-update</a></p>
-<p>如果你在使用过程中，遇到了任何问题，并且确定是 <strong>kotlin-dsl</strong> 的bug，请点这里：<a href="https://github.com/gradle/kotlin-dsl" target="_blank" rel="noopener">https://github.com/gradle/kotlin-dsl</a> 并推送 <strong>issue</strong></p>
-<p>如果你遇到了知识盲点，并且在Google找不到答案。可以来 <a href="https://kotlinlang.slack.com/" target="_blank" rel="noopener">Slack</a>#gradle频道反馈，我在 <a href="https://kotlinlang.slack.com/" target="_blank" rel="noopener">Slack</a> 的昵称是<strong>Scott Smith</strong>，也欢迎你给我发送私信消息。<br><img src="http://upload-images.jianshu.io/upload_images/703764-995957884721bca9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>本篇文章例子完整代码，请点击这里：<a href="https://github.com/yuanhoujun/gradle-script-kotlin-example" target="_blank" rel="noopener">https://github.com/yuanhoujun/gradle-script-kotlin-example</a></p>
-<p>kts文档正在编写当中，具体进度，请点这里：<a href="https://github.com/gradle/kotlin-dsl-docs" target="_blank" rel="noopener">https://github.com/gradle/kotlin-dsl-docs</a></p>
-<h1 id="欢迎加入Kotlin交流群"><a href="#欢迎加入Kotlin交流群" class="headerlink" title="欢迎加入Kotlin交流群"></a>欢迎加入Kotlin交流群</h1><p>如果你也喜欢Kotlin语言，欢迎加入我的Kotlin交流群： 329673958 ，一起来参与Kotlin语言的推广工作。</p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -1692,7 +1665,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        22
+                        23
                     </p>
                 </div>
             </div>
@@ -1947,6 +1920,25 @@
         
         <article class="media">
             
+            <a href="/2019/09/25/Hexo-Next主题快速集成快评/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexo Next主题快速集成快评">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T05:03:00.000Z">2019-09-25</time></div>
+                    <a href="/2019/09/25/Hexo-Next主题快速集成快评/" class="has-link-black-ter is-size-6">Hexo Next主题快速集成快评</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/08/19/隐藏在Flappy-Bird背后的故事/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="隐藏在Flappy Bird背后的故事">
@@ -2021,25 +2013,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2018/04/27/kotlin/那些年，我们看不懂的那些Kotlin标准函数/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="那些年，我们看不懂的那些Kotlin标准函数">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-27T07:21:00.000Z">2018-04-27</time></div>
-                    <a href="/2018/04/27/kotlin/那些年，我们看不懂的那些Kotlin标准函数/" class="has-link-black-ter is-size-6">那些年，我们看不懂的那些Kotlin标准函数</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Kotlin/">Kotlin</a> / <a class="has-link-grey -link" href="/categories/Kotlin/基础知识/">基础知识</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -2051,6 +2024,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/08/">
@@ -2469,6 +2453,25 @@
         
         <article class="media">
             
+            <a href="/2019/09/25/Hexo-Next主题快速集成快评/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexo Next主题快速集成快评">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T05:03:00.000Z">2019-09-25</time></div>
+                    <a href="/2019/09/25/Hexo-Next主题快速集成快评/" class="has-link-black-ter is-size-6">Hexo Next主题快速集成快评</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/08/19/隐藏在Flappy-Bird背后的故事/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="隐藏在Flappy Bird背后的故事">
@@ -2543,25 +2546,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2018/04/27/kotlin/那些年，我们看不懂的那些Kotlin标准函数/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="那些年，我们看不懂的那些Kotlin标准函数">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-27T07:21:00.000Z">2018-04-27</time></div>
-                    <a href="/2018/04/27/kotlin/那些年，我们看不懂的那些Kotlin标准函数/" class="has-link-black-ter is-size-6">那些年，我们看不懂的那些Kotlin标准函数</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Kotlin/">Kotlin</a> / <a class="has-link-grey -link" href="/categories/Kotlin/基础知识/">基础知识</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -2573,6 +2557,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/08/">
