@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://youngfeng.com/all-tags/index.html</loc>
+    
+    <lastmod>2019-11-11T13:04:39.561Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://youngfeng.com/all-categories/index.html</loc>
     
     <lastmod>2019-11-11T11:09:45.191Z</lastmod>
@@ -51,14 +58,14 @@
   </url>
   
   <url>
-    <loc>http://youngfeng.com/categories/other.html</loc>
+    <loc>http://youngfeng.com/categories/index.html</loc>
     
     <lastmod>2019-04-28T12:46:52.221Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://youngfeng.com/categories/index.html</loc>
+    <loc>http://youngfeng.com/categories/other.html</loc>
     
     <lastmod>2019-04-28T12:46:52.221Z</lastmod>
     
